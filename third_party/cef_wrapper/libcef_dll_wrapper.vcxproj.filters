@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="libcef_dll\transfer_util.cc">
@@ -351,6 +351,78 @@
     </ClCompile>
     <ClCompile Include="libcef_dll\wrapper\libcef_dll_wrapper2.cc">
       <Filter>libcef_dll\wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\download_image_callback_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\menu_model_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\register_cdm_callback_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\views\browser_view_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\views\button_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\views\menu_button_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\views\panel_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\views\textfield_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\views\view_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\views\window_delegate_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\image_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\box_layout_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\browser_view_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\button_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\display_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\fill_layout_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\label_button_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\layout_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\menu_button_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\panel_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\scroll_view_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\textfield_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\view_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\views\window_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp\view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1185,6 +1257,78 @@
     <ClInclude Include="libcef_dll\wrapper\cef_browser_info_map.h">
       <Filter>libcef_dll\wrapper</Filter>
     </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\download_image_callback_cpptoc.h">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\menu_model_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\register_cdm_callback_cpptoc.h">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\views\browser_view_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\views\button_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\views\menu_button_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\views\panel_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\views\textfield_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\views\view_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\views\window_delegate_cpptoc.h">
+      <Filter>libcef_dll\cpptoc\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\image_ctocpp.h">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\box_layout_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\browser_view_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\button_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\display_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\fill_layout_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\label_button_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\layout_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\menu_button_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\panel_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\scroll_view_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\textfield_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\view_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\views\window_ctocpp.h">
+      <Filter>libcef_dll\ctocpp\view</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libcef_dll">
@@ -1219,6 +1363,12 @@
     </Filter>
     <Filter Include="libcef_dll\wrapper">
       <UniqueIdentifier>{6A0D875B-94D9-32EC-86E2-E6C8F13D57BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libcef_dll\cpptoc\view">
+      <UniqueIdentifier>{ef57741d-0971-475d-9cde-c7fe333c8338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libcef_dll\ctocpp\view">
+      <UniqueIdentifier>{4e314d3a-71c1-49c5-8259-36da4cabf6d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
