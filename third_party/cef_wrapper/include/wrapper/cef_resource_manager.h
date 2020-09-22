@@ -55,8 +55,9 @@
 // Request object for additional usage information. The methods of this class
 // may be called on any browser process thread unless otherwise indicated.
 ///
-class CefResourceManager :
-    public base::RefCountedThreadSafe<CefResourceManager, CefDeleteOnIOThread> {
+class CefResourceManager
+    : public base::RefCountedThreadSafe<CefResourceManager,
+                                        CefDeleteOnIOThread> {
  public:
   ///
   // Provides an opportunity to modify |url| before it is passed to a provider.
@@ -64,15 +65,14 @@ class CefResourceManager :
   // file extension. |url| will be fully qualified and may contain query or
   // fragment components.
   ///
-  typedef base::Callback<std::string(
-      const std::string& /*url*/)> UrlFilter;
+  typedef base::Callback<std::string(const std::string& /*url*/)> UrlFilter;
 
   ///
   // Used to resolve mime types for URLs, usually based on the file extension.
   // |url| will be fully qualified and may contain query or fragment components.
   ///
-  typedef base::Callback<std::string(
-      const std::string& /*url*/)> MimeTypeResolver;
+  typedef base::Callback<std::string(const std::string& /*url*/)>
+      MimeTypeResolver;
 
  private:
   // Values that stay with a request as it moves between providers.
@@ -95,7 +95,7 @@ class CefResourceManager :
   // will no longer trigger) after Request::Continue or Request::Stop is called.
   // A request passed to Provider::OnRequestCanceled will already have been
   // detached. The methods of this class may be called on any browser process
-  // thread. 
+  // thread.
   ///
   class Request : public base::RefCountedThreadSafe<Request> {
    public:
@@ -110,7 +110,7 @@ class CefResourceManager :
     // Returns the CefBrowser associated with this request.
     ///
     CefRefPtr<CefBrowser> browser() const { return params_.browser_; }
- 
+
     ///
     // Returns the CefFrame associated with this request.
     ///
@@ -141,7 +141,7 @@ class CefResourceManager :
     // returned via CefResourceManager::GetResourceHandler. If |handler| is NULL
     // then the next provider in order, if any, will be called. If there are no
     // additional providers then NULL will be returned via CefResourceManager::
-    // GetResourceHandler. 
+    // GetResourceHandler.
     ///
     void Continue(CefRefPtr<CefResourceHandler> handler);
 
@@ -151,7 +151,7 @@ class CefResourceManager :
     ///
     void Stop();
 
-  private:
+   private:
     // Only allow deletion via scoped_refptr.
     friend class base::RefCountedThreadSafe<Request>;
 
@@ -159,18 +159,18 @@ class CefResourceManager :
 
     // The below methods are called on the browser process IO thread.
 
-    explicit Request(SCOPED_PTR(RequestState) state);
+    explicit Request(scoped_ptr<RequestState> state);
 
-    SCOPED_PTR(RequestState) SendRequest();
+    scoped_ptr<RequestState> SendRequest();
     bool HasState();
 
-    static void ContinueOnIOThread(SCOPED_PTR(RequestState) state,
+    static void ContinueOnIOThread(scoped_ptr<RequestState> state,
                                    CefRefPtr<CefResourceHandler> handler);
-    static void StopOnIOThread(SCOPED_PTR(RequestState) state);
+    static void StopOnIOThread(scoped_ptr<RequestState> state);
 
     // Will be non-NULL while the request is pending. Only accessed on the
     // browser process IO thread.
-    SCOPED_PTR(RequestState) state_;
+    scoped_ptr<RequestState> state_;
 
     // Params that stay with this request object. Safe to access on any thread.
     RequestParams params_;
@@ -178,8 +178,7 @@ class CefResourceManager :
     DISALLOW_COPY_AND_ASSIGN(Request);
   };
 
-  typedef std::list<scoped_refptr<Request> > RequestList;
-
+  typedef std::list<scoped_refptr<Request>> RequestList;
 
   ///
   // Interface implemented by resource providers. A provider may be created on
@@ -195,7 +194,7 @@ class CefResourceManager :
     // asynchronously to indicate completion. See comments on Request for
     // additional usage information.
     ///
-    virtual bool OnRequest(scoped_refptr<Request> request) =0;
+    virtual bool OnRequest(scoped_refptr<Request> request) = 0;
 
     ///
     // Called when a request has been canceled. It is still safe to dereference
@@ -232,7 +231,7 @@ class CefResourceManager :
                             const std::string& directory_path,
                             int order,
                             const std::string& identifier);
-                    
+
   ///
   // Add a provider that maps requests that start with |url_path| to files
   // stored in the archive file at |archive_path|. |url_path| should include an
@@ -284,7 +283,6 @@ class CefResourceManager :
   ///
   void SetMimeTypeResolver(const MimeTypeResolver& resolver);
 
-
   // The below methods should be called from other CEF handlers. They must be
   // called exactly as documented for the manager to function correctly.
 
@@ -314,7 +312,7 @@ class CefResourceManager :
                                           CefDeleteOnIOThread>;
 
   ~CefResourceManager();
-  
+
   // Provider and associated information.
   struct ProviderEntry;
   typedef std::list<ProviderEntry*> ProviderEntryList;
@@ -343,10 +341,10 @@ class CefResourceManager :
 
   // Methods that manage request state between requests. Called on the browser
   // process IO thread.
-  bool SendRequest(SCOPED_PTR(RequestState) state);
-  void ContinueRequest(SCOPED_PTR(RequestState) state,
+  bool SendRequest(scoped_ptr<RequestState> state);
+  void ContinueRequest(scoped_ptr<RequestState> state,
                        CefRefPtr<CefResourceHandler> handler);
-  void StopRequest(SCOPED_PTR(RequestState) state);
+  void StopRequest(scoped_ptr<RequestState> state);
   bool IncrementProvider(RequestState* state);
   void DetachRequestFromProvider(RequestState* state);
   void GetNextValidProvider(ProviderEntryList::iterator& iterator);
@@ -358,14 +356,14 @@ class CefResourceManager :
   ProviderEntryList providers_;
 
   // Map of response ID to pending CefResourceHandler object.
-  typedef std::map<uint64, CefRefPtr<CefResourceHandler> > PendingHandlersMap;
+  typedef std::map<uint64, CefRefPtr<CefResourceHandler>> PendingHandlersMap;
   PendingHandlersMap pending_handlers_;
 
   UrlFilter url_filter_;
   MimeTypeResolver mime_type_resolver_;
 
   // Must be the last member. Created and accessed on the IO thread.
-  SCOPED_PTR(base::WeakPtrFactory<CefResourceManager>) weak_ptr_factory_;
+  scoped_ptr<base::WeakPtrFactory<CefResourceManager>> weak_ptr_factory_;
 
   DISALLOW_COPY_AND_ASSIGN(CefResourceManager);
 };

@@ -15,3 +15,4 @@ bin/multi_browser_d.exe
 bin/basic_d.exe
 bin/layouts_d.exe
 bin/virtualbox_d.exe
+bin/cef_temp/
