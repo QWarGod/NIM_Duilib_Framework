@@ -1,4 +1,4 @@
-// Copyright (c) 2016 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,10 +9,11 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
+// $hash=de60346a2373edcaa4087576ef4a33ce919f5b6d$
+//
 
-#include "libcef_dll/ctocpp/views/box_layout_ctocpp.h"
 #include "libcef_dll/ctocpp/views/fill_layout_ctocpp.h"
-
+#include "libcef_dll/ctocpp/views/box_layout_ctocpp.h"
 
 // VIRTUAL METHODS - Body may be edited by hand.
 
@@ -55,25 +56,30 @@ bool CefFillLayoutCToCpp::IsValid() {
   int _retval = _struct->is_valid(_struct);
 
   // Return type: bool
-  return _retval?true:false;
+  return _retval ? true : false;
 }
-
 
 // CONSTRUCTOR - Do not edit by hand.
 
-CefFillLayoutCToCpp::CefFillLayoutCToCpp() {
-}
+CefFillLayoutCToCpp::CefFillLayoutCToCpp() {}
 
-template<> cef_fill_layout_t* CefCToCpp<CefFillLayoutCToCpp, CefFillLayout,
-    cef_fill_layout_t>::UnwrapDerived(CefWrapperType type, CefFillLayout* c) {
+template <>
+cef_fill_layout_t*
+CefCToCppRefCounted<CefFillLayoutCToCpp, CefFillLayout, cef_fill_layout_t>::
+    UnwrapDerived(CefWrapperType type, CefFillLayout* c) {
   NOTREACHED() << "Unexpected class type: " << type;
   return NULL;
 }
 
 #if DCHECK_IS_ON()
-template<> base::AtomicRefCount CefCToCpp<CefFillLayoutCToCpp, CefFillLayout,
-    cef_fill_layout_t>::DebugObjCt = 0;
+template <>
+base::AtomicRefCount CefCToCppRefCounted<CefFillLayoutCToCpp,
+                                         CefFillLayout,
+                                         cef_fill_layout_t>::DebugObjCt = 0;
 #endif
 
-template<> CefWrapperType CefCToCpp<CefFillLayoutCToCpp, CefFillLayout,
-    cef_fill_layout_t>::kWrapperType = WT_FILL_LAYOUT;
+template <>
+CefWrapperType CefCToCppRefCounted<CefFillLayoutCToCpp,
+                                   CefFillLayout,
+                                   cef_fill_layout_t>::kWrapperType =
+    WT_FILL_LAYOUT;

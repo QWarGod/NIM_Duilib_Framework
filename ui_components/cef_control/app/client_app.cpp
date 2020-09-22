@@ -38,7 +38,7 @@ namespace nim_comp {
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-    void ClientApp::OnRegisterCustomSchemes(CefRefPtr<CefSchemeRegistrar> registrar) {
+    void ClientApp::OnRegisterCustomSchemes(CefRawPtr<CefSchemeRegistrar> registrar) {
         // Default schemes that support cookies.
         cookieable_schemes_.push_back("http");
         cookieable_schemes_.push_back("https");
