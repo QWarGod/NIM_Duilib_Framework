@@ -20,6 +20,7 @@ namespace nim_comp {
         public CefContextMenuHandler,
         public CefDisplayHandler,
         public CefDragHandler,
+        public CefFocusHandler,
         public CefGeolocationHandler,
         public CefJSDialogHandler,
         public CefKeyboardHandler,
@@ -175,6 +176,7 @@ namespace nim_comp {
         virtual CefRefPtr<CefRenderHandler>  GetRenderHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefDisplayHandler> GetDisplayHandler() OVERRIDE{ return this; }
         virtual CefRefPtr<CefDragHandler> GetDragHandler() OVERRIDE{ return this; }
+        virtual CefRefPtr<CefFocusHandler> GetFocusHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefGeolocationHandler> GetGeolocationHandler() OVERRIDE{ return this; }
         virtual CefRefPtr<CefJSDialogHandler> GetJSDialogHandler() {
             return this;
@@ -312,6 +314,17 @@ namespace nim_comp {
                                   const std::vector<CefString>& accept_filters,
                                   int selected_accept_filter,
                                   CefRefPtr<CefFileDialogCallback> callback) OVERRIDE;
+
+        // CefDragHandler methods
+        bool OnDragEnter(CefRefPtr<CefBrowser> browser,
+                         CefRefPtr<CefDragData> dragData,
+                         CefDragHandler::DragOperationsMask mask) OVERRIDE;
+        /*void OnDraggableRegionsChanged(
+        	CefRefPtr<CefBrowser> browser,
+        	const std::vector<CefDraggableRegion>& regions) OVERRIDE;*/
+
+        // CefFocusHandler methods
+        void OnTakeFocus(CefRefPtr<CefBrowser> browser, bool next) OVERRIDE;
 
       protected:
         CefRefPtr<CefBrowser>	browser_;
