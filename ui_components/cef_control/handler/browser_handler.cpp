@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "browser_handler.h"
 #include "include/cef_frame.h"
+#include "include/wrapper/cef_helpers.h"
 #include "cef_control/manager/cef_manager.h"
 #include "cef_control/util/util.h"
 #include "cef_control/app/ipc_string_define.h"
@@ -429,4 +430,22 @@ namespace nim_comp {
             return false;
     }
 
+
+    bool BrowserHandler::OnDragEnter(CefRefPtr<CefBrowser> browser,
+                                     CefRefPtr<CefDragData> dragData,
+                                     CefDragHandler::DragOperationsMask mask) {
+        CEF_REQUIRE_UI_THREAD();
+
+        // Forbid dragging of URLs and files.
+        if ((mask & DRAG_OPERATION_LINK) && !dragData->IsFragment()) {
+            //test_runner::Alert(browser, "cefclient blocks dragging of URLs and files");
+            return true;
+        }
+
+        return false;
+    }
+
+    void BrowserHandler::OnTakeFocus(CefRefPtr<CefBrowser> browser, bool next) {
+        CEF_REQUIRE_UI_THREAD();
+    }
 }
