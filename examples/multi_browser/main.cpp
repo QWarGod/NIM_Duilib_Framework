@@ -34,6 +34,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 初始化 CEF
     CefSettings settings;
+    // 设置语言
+    CefString(&settings.locale).FromString(std::string("zh-CN"));
+    CefString(&settings.accept_language_list).FromString(std::string("zh-CN"));
 
     if (!nim_comp::CefManager::GetInstance()->Initialize(nbase::win32::GetCurrentModuleDirectory() + L"cef_temp\\", settings, kEnableOffsetRender)) {
         return 0;
