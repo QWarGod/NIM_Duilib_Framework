@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=a29d8f9e49143e42a0ae0204c7d439c76b3c371c$
+// $hash=5036c24365fa0fdb3d7efc54670f3123a7104fa0$
 //
 
 #include "libcef_dll/ctocpp/request_context_ctocpp.h"
@@ -21,7 +21,6 @@
 #include "libcef_dll/ctocpp/cookie_manager_ctocpp.h"
 #include "libcef_dll/ctocpp/dictionary_value_ctocpp.h"
 #include "libcef_dll/ctocpp/extension_ctocpp.h"
-#include "libcef_dll/ctocpp/media_router_ctocpp.h"
 #include "libcef_dll/ctocpp/value_ctocpp.h"
 #include "libcef_dll/transfer_util.h"
 
@@ -63,7 +62,7 @@ CefRefPtr<CefRequestContext> CefRequestContext::CreateContext(
   // Verify param: other; type: refptr_same
   DCHECK(other.get());
   if (!other.get())
-    return nullptr;
+    return NULL;
   // Unverified params: handler
 
   // Execute
@@ -138,7 +137,7 @@ NO_SANITIZE("cfi-icall")
 CefRefPtr<CefRequestContextHandler> CefRequestContextCToCpp::GetHandler() {
   cef_request_context_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_handler))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -170,7 +169,7 @@ CefRefPtr<CefCookieManager> CefRequestContextCToCpp::GetCookieManager(
     CefRefPtr<CefCompletionCallback> callback) {
   cef_request_context_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_cookie_manager))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -262,14 +261,14 @@ CefRefPtr<CefValue> CefRequestContextCToCpp::GetPreference(
     const CefString& name) {
   cef_request_context_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_preference))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   // Verify param: name; type: string_byref_const
   DCHECK(!name.empty());
   if (name.empty())
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_value_t* _retval = _struct->get_preference(_struct, name.GetStruct());
@@ -283,7 +282,7 @@ CefRefPtr<CefDictionaryValue> CefRequestContextCToCpp::GetAllPreferences(
     bool include_defaults) {
   cef_request_context_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_all_preferences))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -509,14 +508,14 @@ CefRefPtr<CefExtension> CefRequestContextCToCpp::GetExtension(
     const CefString& extension_id) {
   cef_request_context_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_extension))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   // Verify param: extension_id; type: string_byref_const
   DCHECK(!extension_id.empty());
   if (extension_id.empty())
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_extension_t* _retval =
@@ -524,21 +523,6 @@ CefRefPtr<CefExtension> CefRequestContextCToCpp::GetExtension(
 
   // Return type: refptr_same
   return CefExtensionCToCpp::Wrap(_retval);
-}
-
-NO_SANITIZE("cfi-icall")
-CefRefPtr<CefMediaRouter> CefRequestContextCToCpp::GetMediaRouter() {
-  cef_request_context_t* _struct = GetStruct();
-  if (CEF_MEMBER_MISSING(_struct, get_media_router))
-    return nullptr;
-
-  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
-
-  // Execute
-  cef_media_router_t* _retval = _struct->get_media_router(_struct);
-
-  // Return type: refptr_same
-  return CefMediaRouterCToCpp::Wrap(_retval);
 }
 
 // CONSTRUCTOR - Do not edit by hand.
@@ -556,7 +540,7 @@ cef_request_context_t* CefCToCppRefCounted<
     cef_request_context_t>::UnwrapDerived(CefWrapperType type,
                                           CefRequestContext* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return nullptr;
+  return NULL;
 }
 
 template <>

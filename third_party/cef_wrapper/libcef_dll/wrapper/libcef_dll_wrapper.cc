@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=c565ea9030eeed15f24fe420b828453a23dbc6ba$
+// $hash=32eea715f2566d1b6a4e3d263e35400cf7c53869$
 //
 
 #include "include/capi/cef_app_capi.h"
@@ -492,7 +492,7 @@ CEF_GLOBAL CefRefPtr<CefBinaryValue> CefBase64Decode(const CefString& data) {
   // Verify param: data; type: string_byref_const
   DCHECK(!data.empty());
   if (data.empty())
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_binary_value_t* _retval = cef_base64decode(data.GetStruct());
@@ -548,7 +548,7 @@ CEF_GLOBAL CefRefPtr<CefValue> CefParseJSON(const CefString& json_string,
   // Verify param: json_string; type: string_byref_const
   DCHECK(!json_string.empty());
   if (json_string.empty())
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_value_t* _retval = cef_parse_json(json_string.GetStruct(), options);
@@ -568,7 +568,7 @@ CEF_GLOBAL CefRefPtr<CefValue> CefParseJSONAndReturnError(
   // Verify param: json_string; type: string_byref_const
   DCHECK(!json_string.empty());
   if (json_string.empty())
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_value_t* _retval = cef_parse_jsonand_return_error(
@@ -664,6 +664,17 @@ CEF_GLOBAL bool CefIsCertStatusError(cef_cert_status_t status) {
 
   // Execute
   int _retval = cef_is_cert_status_error(status);
+
+  // Return type: bool
+  return _retval ? true : false;
+}
+
+NO_SANITIZE("cfi-icall")
+CEF_GLOBAL bool CefIsCertStatusMinorError(cef_cert_status_t status) {
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Execute
+  int _retval = cef_is_cert_status_minor_error(status);
 
   // Return type: bool
   return _retval ? true : false;

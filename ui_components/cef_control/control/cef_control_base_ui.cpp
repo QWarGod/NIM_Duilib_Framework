@@ -37,24 +37,24 @@ namespace nim_comp {
         }
     }
 
-    //void CefControlBase::LoadString(const CefString& stringW, const CefString& url) {
-    //    if (browser_handler_.get() && browser_handler_->GetBrowser().get()) {
-    //        CefRefPtr<CefFrame> frame = browser_handler_->GetBrowser()->GetMainFrame();
+    void CefControlBase::LoadString(const CefString& stringW, const CefString& url) {
+        if (browser_handler_.get() && browser_handler_->GetBrowser().get()) {
+            CefRefPtr<CefFrame> frame = browser_handler_->GetBrowser()->GetMainFrame();
 
-    //        if (!frame)
-    //            return;
+            if (!frame)
+                return;
 
-    //        frame->LoadStringW(stringW, url);
+            frame->LoadStringW(stringW, url);
 
-    //    } else {
-    //        if (browser_handler_.get()) {
-    //            StdClosure cb = ToWeakCallback([this, stringW, url]() {
-    //                LoadString(stringW, url);
-    //            });
-    //            browser_handler_->AddAfterCreateTask(cb);
-    //        }
-    //    }
-    //}
+        } else {
+            if (browser_handler_.get()) {
+                StdClosure cb = ToWeakCallback([this, stringW, url]() {
+                    LoadString(stringW, url);
+                });
+                browser_handler_->AddAfterCreateTask(cb);
+            }
+        }
+    }
 
     void CefControlBase::GoBack() {
         if (browser_handler_.get() && browser_handler_->GetBrowser().get()) {
