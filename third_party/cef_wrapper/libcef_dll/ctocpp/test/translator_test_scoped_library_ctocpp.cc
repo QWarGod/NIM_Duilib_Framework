@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=d4d0574d3ca8e5226b711d9b5e5e3c58b26680e0$
+// $hash=f7a516322c3b9b51a545f7b826dbfb509a7194e7$
 //
 
 #include "libcef_dll/ctocpp/test/translator_test_scoped_library_ctocpp.h"
@@ -18,6 +18,7 @@
 
 // STATIC METHODS - Body may be edited by hand.
 
+NO_SANITIZE("cfi-icall")
 CefOwnPtr<CefTranslatorTestScopedLibrary>
 CefTranslatorTestScopedLibrary::Create(int value) {
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
@@ -32,7 +33,7 @@ CefTranslatorTestScopedLibrary::Create(int value) {
 
 // VIRTUAL METHODS - Body may be edited by hand.
 
-int CefTranslatorTestScopedLibraryCToCpp::GetValue() {
+NO_SANITIZE("cfi-icall") int CefTranslatorTestScopedLibraryCToCpp::GetValue() {
   cef_translator_test_scoped_library_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_value))
     return 0;
@@ -46,6 +47,7 @@ int CefTranslatorTestScopedLibraryCToCpp::GetValue() {
   return _retval;
 }
 
+NO_SANITIZE("cfi-icall")
 void CefTranslatorTestScopedLibraryCToCpp::SetValue(int value) {
   cef_translator_test_scoped_library_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, set_value))
@@ -60,6 +62,10 @@ void CefTranslatorTestScopedLibraryCToCpp::SetValue(int value) {
 // CONSTRUCTOR - Do not edit by hand.
 
 CefTranslatorTestScopedLibraryCToCpp::CefTranslatorTestScopedLibraryCToCpp() {}
+
+// DESTRUCTOR - Do not edit by hand.
+
+CefTranslatorTestScopedLibraryCToCpp::~CefTranslatorTestScopedLibraryCToCpp() {}
 
 template <>
 cef_translator_test_scoped_library_t*
@@ -83,7 +89,7 @@ CefCToCppScoped<CefTranslatorTestScopedLibraryCToCpp,
                     c.release()))));
   }
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>
@@ -108,16 +114,8 @@ CefCToCppScoped<CefTranslatorTestScopedLibraryCToCpp,
                     CEF_RAW_PTR_GET(c)))));
   }
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCToCppScoped<CefTranslatorTestScopedLibraryCToCpp,
-                    CefTranslatorTestScopedLibrary,
-                    cef_translator_test_scoped_library_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType

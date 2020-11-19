@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=9f5778bffbd8c25b6f4ee2e7ec06e9eca5f9f48d$
+// $hash=44e223e0d74d87cfc4aeee6bfad7e6582390a0ad$
 //
 
 #include "libcef_dll/cpptoc/app_cpptoc.h"
@@ -125,20 +125,18 @@ CefAppCppToC::CefAppCppToC() {
   GetStruct()->get_render_process_handler = app_get_render_process_handler;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefAppCppToC::~CefAppCppToC() {}
+
 template <>
 CefRefPtr<CefApp>
 CefCppToCRefCounted<CefAppCppToC, CefApp, cef_app_t>::UnwrapDerived(
     CefWrapperType type,
     cef_app_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCppToCRefCounted<CefAppCppToC, CefApp, cef_app_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType

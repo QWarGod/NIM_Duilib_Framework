@@ -19,7 +19,7 @@ namespace ui {
     typedef std::function<void(const std::wstring& url)> OnUrlChangeEvent;
 
     typedef std::function<bool(const std::wstring& url)> OnLinkClickEvent;
-    typedef std::function<CefRequestHandler::ReturnValue(CefRefPtr<CefRequest> request, bool is_redirect)> OnBeforeResourceLoadEvent;
+    typedef std::function<cef_return_value_t(CefRefPtr<CefRequest> request, bool is_redirect)> OnBeforeResourceLoadEvent;
     typedef std::function<void(const CefString& old_url, const CefString& new_url)> OnMainURLChengeEvent;
 
     typedef std::function<void(bool isLoading, bool canGoBack, bool canGoForward)> OnLoadingStateChangeEvent;

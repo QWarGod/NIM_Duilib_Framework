@@ -27,7 +27,7 @@ namespace nim_comp {
 
             // 发送消息到 browser 进程
             CefRefPtr<CefBrowser> browser = context->GetBrowser();
-            browser->SendProcessMessage(PID_BROWSER, message);
+            browser->GetMainFrame()->SendProcessMessage(PID_BROWSER, message);
 
             return true;
         }
@@ -175,7 +175,7 @@ namespace nim_comp {
                     CefRefPtr<CefListValue> args = message->GetArgumentList();
                     args->SetString(0, json_string->GetStringValue());
                     args->SetInt(1, cpp_callback_id);
-                    context->GetBrowser()->SendProcessMessage(PID_BROWSER, message);
+                    context->GetBrowser()->GetMainFrame()->SendProcessMessage(PID_BROWSER, message);
                 }
 
                 context->Exit();
@@ -206,7 +206,7 @@ namespace nim_comp {
             args->SetInt(2, cpp_callback_id_++);
             args->SetInt(3, (int)(frame->GetIdentifier()));
 
-            frame->GetBrowser()->SendProcessMessage(PID_RENDERER, message);
+            frame->GetBrowser()->GetMainFrame()->SendProcessMessage(PID_RENDERER, message);
 
             return true;
         }
@@ -270,7 +270,7 @@ namespace nim_comp {
                     args->SetInt(0, js_callback_id);
                     args->SetBool(1, has_error);
                     args->SetString(2, json_result);
-                    browser->SendProcessMessage(PID_RENDERER, message);
+                    browser->GetMainFrame()->SendProcessMessage(PID_RENDERER, message);
                 });
             });
             return true;
@@ -286,7 +286,7 @@ namespace nim_comp {
                     args->SetInt(0, js_callback_id);
                     args->SetBool(1, has_error);
                     args->SetString(2, json_result);
-                    browser->SendProcessMessage(PID_RENDERER, message);
+                    browser->GetMainFrame()->SendProcessMessage(PID_RENDERER, message);
                 });
             });
             return true;
@@ -295,7 +295,7 @@ namespace nim_comp {
             args->SetInt(0, js_callback_id);
             args->SetBool(1, true);
             args->SetString(2, R"({"message":"Function does not exist."})");
-            browser->SendProcessMessage(PID_RENDERER, message);
+            browser->GetMainFrame()->SendProcessMessage(PID_RENDERER, message);
             return false;
         }
     }

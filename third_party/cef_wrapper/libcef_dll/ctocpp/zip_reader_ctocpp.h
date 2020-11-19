@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=48ff90ae43ac6759c5106d5b3ef486a04a474988$
+// $hash=a2db9b88080c167747d75e9c5a68c0757d077861$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_ZIP_READER_CTOCPP_H_
@@ -31,6 +31,7 @@ class CefZipReaderCToCpp : public CefCToCppRefCounted<CefZipReaderCToCpp,
                                                       cef_zip_reader_t> {
  public:
   CefZipReaderCToCpp();
+  virtual ~CefZipReaderCToCpp();
 
   // CefZipReader methods.
   bool MoveToFirstFile() OVERRIDE;

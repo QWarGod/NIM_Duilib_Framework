@@ -9,6 +9,7 @@
 #include "cef_control_event.h"
 #include "cef_control/app/cef_js_bridge.h"
 #include "cef_control/handler/browser_handler.h"
+#include "cef_control/control/cef_control_base.h"
 
 namespace nim_comp {
 
@@ -33,7 +34,7 @@ namespace nim_comp {
         * @param[in] url 网址
         * @return 无
         */
-        void LoadString(const CefString& stringW, const CefString& url);
+        //void LoadString(const CefString& stringW, const CefString& url);
 
         /**
         * @brief 后退
@@ -419,7 +420,7 @@ namespace nim_comp {
         virtual void OnProtocolExecution(CefRefPtr<CefBrowser> browser, const CefString& url, bool& allow_os_execution) OVERRIDE;
 
         // 在非UI线程中被调用
-        virtual CefRequestHandler::ReturnValue OnBeforeResourceLoad(
+        virtual cef_return_value_t OnBeforeResourceLoad(
             CefRefPtr<CefBrowser> browser,
             CefRefPtr<CefFrame> frame,
             CefRefPtr<CefRequest> request,

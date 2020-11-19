@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,10 +9,11 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=86e0b6a1e669437f51917386ce57d4111178fe59$
+// $hash=464d0d568a1b3712452c0f8406057bd598440f20$
 //
 
 #include "libcef_dll/cpptoc/response_filter_cpptoc.h"
+#include "libcef_dll/shutdown_checker.h"
 
 namespace {
 
@@ -20,6 +21,8 @@ namespace {
 
 int CEF_CALLBACK
 response_filter_init_filter(struct _cef_response_filter_t* self) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -41,6 +44,8 @@ response_filter_filter(struct _cef_response_filter_t* self,
                        void* data_out,
                        size_t data_out_size,
                        size_t* data_out_written) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -91,6 +96,12 @@ CefResponseFilterCppToC::CefResponseFilterCppToC() {
   GetStruct()->filter = response_filter_filter;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefResponseFilterCppToC::~CefResponseFilterCppToC() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 CefRefPtr<CefResponseFilter> CefCppToCRefCounted<
     CefResponseFilterCppToC,
@@ -98,15 +109,8 @@ CefRefPtr<CefResponseFilter> CefCppToCRefCounted<
     cef_response_filter_t>::UnwrapDerived(CefWrapperType type,
                                           cef_response_filter_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount CefCppToCRefCounted<CefResponseFilterCppToC,
-                                         CefResponseFilter,
-                                         cef_response_filter_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType CefCppToCRefCounted<CefResponseFilterCppToC,

@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=77e7a2a31224107e2728b64ad97ad899dd62269c$
+// $hash=8eb4ca176ea5985fcbe291dc5e05b65dade7bb77$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_VIEWS_FILL_LAYOUT_CTOCPP_H_
@@ -31,6 +31,7 @@ class CefFillLayoutCToCpp : public CefCToCppRefCounted<CefFillLayoutCToCpp,
                                                        cef_fill_layout_t> {
  public:
   CefFillLayoutCToCpp();
+  virtual ~CefFillLayoutCToCpp();
 
   // CefFillLayout methods.
 

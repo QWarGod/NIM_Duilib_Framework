@@ -95,7 +95,7 @@
 #define ARCH_CPU_ARMEL 1
 #define ARCH_CPU_32_BITS 1
 #define ARCH_CPU_LITTLE_ENDIAN 1
-#elif defined(__aarch64__)
+#elif defined(__aarch64__) || defined(_M_ARM64)
 #define ARCH_CPU_ARM_FAMILY 1
 #define ARCH_CPU_ARM64 1
 #define ARCH_CPU_64_BITS 1
@@ -160,6 +160,16 @@
 //   ALLOW_UNUSED_LOCAL(x);
 #ifndef ALLOW_UNUSED_LOCAL
 #define ALLOW_UNUSED_LOCAL(x) false ? (void)x : (void)0
+#endif
+
+// Sanitizers annotations.
+#if defined(__has_attribute)
+#if __has_attribute(no_sanitize)
+#define NO_SANITIZE(what) __attribute__((no_sanitize(what)))
+#endif
+#endif
+#if !defined(NO_SANITIZE)
+#define NO_SANITIZE(what)
 #endif
 
 #endif  // !USING_CHROMIUM_INCLUDES

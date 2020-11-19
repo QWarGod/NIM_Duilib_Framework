@@ -46,7 +46,7 @@ namespace nim_comp {
             window_info.SetAsChild(this->m_pWindow->GetHWND(), m_rcItem);
 
             CefBrowserSettings browser_settings;
-            CefBrowserHost::CreateBrowser(window_info, browser_handler_, L"", browser_settings, NULL);
+            CefBrowserHost::CreateBrowser(window_info, browser_handler_, L"", browser_settings, nullptr, nullptr);
         }
     }
 

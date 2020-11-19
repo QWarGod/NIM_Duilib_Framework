@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=a2504c28284997e735a95538b98931c6bece1e38$
+// $hash=21cc15ad9b1f176e4c399cc74fcc459b32d38fee$
 //
 
 #include "libcef_dll/cpptoc/v8accessor_cpptoc.h"
@@ -65,7 +65,7 @@ int CEF_CALLBACK v8accessor_get(struct _cef_v8accessor_t* self,
         *retval = CefV8ValueCToCpp::Unwrap(retvalPtr);
       }
     } else {
-      *retval = NULL;
+      *retval = nullptr;
     }
   }
 
@@ -121,20 +121,17 @@ CefV8AccessorCppToC::CefV8AccessorCppToC() {
   GetStruct()->set = v8accessor_set;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefV8AccessorCppToC::~CefV8AccessorCppToC() {}
+
 template <>
 CefRefPtr<CefV8Accessor>
 CefCppToCRefCounted<CefV8AccessorCppToC, CefV8Accessor, cef_v8accessor_t>::
     UnwrapDerived(CefWrapperType type, cef_v8accessor_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount CefCppToCRefCounted<CefV8AccessorCppToC,
-                                         CefV8Accessor,
-                                         cef_v8accessor_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType CefCppToCRefCounted<CefV8AccessorCppToC,
