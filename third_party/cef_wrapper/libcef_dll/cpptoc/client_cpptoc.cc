@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=4ddb855e437a437ac87a894769d7e8c6cf208988$
+// $hash=154a21a2f4ac985eeed2d28ad9479f322c4aad07$
 //
 
 #include "libcef_dll/cpptoc/client_cpptoc.h"
@@ -20,7 +20,6 @@
 #include "libcef_dll/cpptoc/drag_handler_cpptoc.h"
 #include "libcef_dll/cpptoc/find_handler_cpptoc.h"
 #include "libcef_dll/cpptoc/focus_handler_cpptoc.h"
-#include "libcef_dll/cpptoc/geolocation_handler_cpptoc.h"
 #include "libcef_dll/cpptoc/jsdialog_handler_cpptoc.h"
 #include "libcef_dll/cpptoc/keyboard_handler_cpptoc.h"
 #include "libcef_dll/cpptoc/life_span_handler_cpptoc.h"
@@ -28,6 +27,7 @@
 #include "libcef_dll/cpptoc/render_handler_cpptoc.h"
 #include "libcef_dll/cpptoc/request_handler_cpptoc.h"
 #include "libcef_dll/ctocpp/browser_ctocpp.h"
+#include "libcef_dll/ctocpp/frame_ctocpp.h"
 #include "libcef_dll/ctocpp/process_message_ctocpp.h"
 
 namespace {
@@ -146,22 +146,6 @@ client_get_focus_handler(struct _cef_client_t* self) {
   return CefFocusHandlerCppToC::Wrap(_retval);
 }
 
-struct _cef_geolocation_handler_t* CEF_CALLBACK
-client_get_geolocation_handler(struct _cef_client_t* self) {
-  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
-
-  DCHECK(self);
-  if (!self)
-    return NULL;
-
-  // Execute
-  CefRefPtr<CefGeolocationHandler> _retval =
-      CefClientCppToC::Get(self)->GetGeolocationHandler();
-
-  // Return type: refptr_same
-  return CefGeolocationHandlerCppToC::Wrap(_retval);
-}
-
 struct _cef_jsdialog_handler_t* CEF_CALLBACK
 client_get_jsdialog_handler(struct _cef_client_t* self) {
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
@@ -261,6 +245,7 @@ client_get_request_handler(struct _cef_client_t* self) {
 int CEF_CALLBACK
 client_on_process_message_received(struct _cef_client_t* self,
                                    cef_browser_t* browser,
+                                   struct _cef_frame_t* frame,
                                    cef_process_id_t source_process,
                                    struct _cef_process_message_t* message) {
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
@@ -272,6 +257,10 @@ client_on_process_message_received(struct _cef_client_t* self,
   DCHECK(browser);
   if (!browser)
     return 0;
+  // Verify param: frame; type: refptr_diff
+  DCHECK(frame);
+  if (!frame)
+    return 0;
   // Verify param: message; type: refptr_diff
   DCHECK(message);
   if (!message)
@@ -279,8 +268,8 @@ client_on_process_message_received(struct _cef_client_t* self,
 
   // Execute
   bool _retval = CefClientCppToC::Get(self)->OnProcessMessageReceived(
-      CefBrowserCToCpp::Wrap(browser), source_process,
-      CefProcessMessageCToCpp::Wrap(message));
+      CefBrowserCToCpp::Wrap(browser), CefFrameCToCpp::Wrap(frame),
+      source_process, CefProcessMessageCToCpp::Wrap(message));
 
   // Return type: bool
   return _retval;
@@ -298,7 +287,6 @@ CefClientCppToC::CefClientCppToC() {
   GetStruct()->get_drag_handler = client_get_drag_handler;
   GetStruct()->get_find_handler = client_get_find_handler;
   GetStruct()->get_focus_handler = client_get_focus_handler;
-  GetStruct()->get_geolocation_handler = client_get_geolocation_handler;
   GetStruct()->get_jsdialog_handler = client_get_jsdialog_handler;
   GetStruct()->get_keyboard_handler = client_get_keyboard_handler;
   GetStruct()->get_life_span_handler = client_get_life_span_handler;
@@ -308,21 +296,18 @@ CefClientCppToC::CefClientCppToC() {
   GetStruct()->on_process_message_received = client_on_process_message_received;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefClientCppToC::~CefClientCppToC() {}
+
 template <>
 CefRefPtr<CefClient>
 CefCppToCRefCounted<CefClientCppToC, CefClient, cef_client_t>::UnwrapDerived(
     CefWrapperType type,
     cef_client_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCppToCRefCounted<CefClientCppToC, CefClient, cef_client_t>::DebugObjCt =
-        0;
-#endif
 
 template <>
 CefWrapperType CefCppToCRefCounted<CefClientCppToC, CefClient, cef_client_t>::

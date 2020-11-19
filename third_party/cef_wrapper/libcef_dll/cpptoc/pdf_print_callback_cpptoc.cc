@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,10 +9,11 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=6f723c637ef687429368a60f58037a36e5a5ce89$
+// $hash=1b0468f3f28054e3ce6304fb341b5747289c24b7$
 //
 
 #include "libcef_dll/cpptoc/pdf_print_callback_cpptoc.h"
+#include "libcef_dll/shutdown_checker.h"
 
 namespace {
 
@@ -22,6 +23,8 @@ void CEF_CALLBACK
 pdf_print_callback_on_pdf_print_finished(struct _cef_pdf_print_callback_t* self,
                                          const cef_string_t* path,
                                          int ok) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -45,6 +48,12 @@ CefPdfPrintCallbackCppToC::CefPdfPrintCallbackCppToC() {
   GetStruct()->on_pdf_print_finished = pdf_print_callback_on_pdf_print_finished;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefPdfPrintCallbackCppToC::~CefPdfPrintCallbackCppToC() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 CefRefPtr<CefPdfPrintCallback> CefCppToCRefCounted<
     CefPdfPrintCallbackCppToC,
@@ -52,16 +61,8 @@ CefRefPtr<CefPdfPrintCallback> CefCppToCRefCounted<
     cef_pdf_print_callback_t>::UnwrapDerived(CefWrapperType type,
                                              cef_pdf_print_callback_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount CefCppToCRefCounted<CefPdfPrintCallbackCppToC,
-                                         CefPdfPrintCallback,
-                                         cef_pdf_print_callback_t>::DebugObjCt =
-    0;
-#endif
 
 template <>
 CefWrapperType CefCppToCRefCounted<CefPdfPrintCallbackCppToC,

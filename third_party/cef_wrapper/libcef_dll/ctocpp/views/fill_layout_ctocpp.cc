@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,18 +9,22 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=de60346a2373edcaa4087576ef4a33ce919f5b6d$
+// $hash=c23b9c61162d6f4e69a04dca457d014a272ca4cf$
 //
 
 #include "libcef_dll/ctocpp/views/fill_layout_ctocpp.h"
 #include "libcef_dll/ctocpp/views/box_layout_ctocpp.h"
+#include "libcef_dll/shutdown_checker.h"
 
 // VIRTUAL METHODS - Body may be edited by hand.
 
+NO_SANITIZE("cfi-icall")
 CefRefPtr<CefBoxLayout> CefFillLayoutCToCpp::AsBoxLayout() {
+  shutdown_checker::AssertNotShutdown();
+
   cef_layout_t* _struct = reinterpret_cast<cef_layout_t*>(GetStruct());
   if (CEF_MEMBER_MISSING(_struct, as_box_layout))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -31,10 +35,13 @@ CefRefPtr<CefBoxLayout> CefFillLayoutCToCpp::AsBoxLayout() {
   return CefBoxLayoutCToCpp::Wrap(_retval);
 }
 
+NO_SANITIZE("cfi-icall")
 CefRefPtr<CefFillLayout> CefFillLayoutCToCpp::AsFillLayout() {
+  shutdown_checker::AssertNotShutdown();
+
   cef_layout_t* _struct = reinterpret_cast<cef_layout_t*>(GetStruct());
   if (CEF_MEMBER_MISSING(_struct, as_fill_layout))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -45,7 +52,9 @@ CefRefPtr<CefFillLayout> CefFillLayoutCToCpp::AsFillLayout() {
   return CefFillLayoutCToCpp::Wrap(_retval);
 }
 
-bool CefFillLayoutCToCpp::IsValid() {
+NO_SANITIZE("cfi-icall") bool CefFillLayoutCToCpp::IsValid() {
+  shutdown_checker::AssertNotShutdown();
+
   cef_layout_t* _struct = reinterpret_cast<cef_layout_t*>(GetStruct());
   if (CEF_MEMBER_MISSING(_struct, is_valid))
     return false;
@@ -63,20 +72,19 @@ bool CefFillLayoutCToCpp::IsValid() {
 
 CefFillLayoutCToCpp::CefFillLayoutCToCpp() {}
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefFillLayoutCToCpp::~CefFillLayoutCToCpp() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 cef_fill_layout_t*
 CefCToCppRefCounted<CefFillLayoutCToCpp, CefFillLayout, cef_fill_layout_t>::
     UnwrapDerived(CefWrapperType type, CefFillLayout* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount CefCToCppRefCounted<CefFillLayoutCToCpp,
-                                         CefFillLayout,
-                                         cef_fill_layout_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType CefCToCppRefCounted<CefFillLayoutCToCpp,

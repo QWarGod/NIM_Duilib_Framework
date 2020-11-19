@@ -114,7 +114,7 @@ namespace nim_comp {
             cb_protocol_execution_(browser, url, allow_os_execution);
     }
 
-    CefRequestHandler::ReturnValue CefControlBase::OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefRequest> request, CefRefPtr<CefRequestCallback> callback) {
+    cef_return_value_t CefControlBase::OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefRequest> request, CefRefPtr<CefRequestCallback> callback) {
         if (cb_before_resource_load_)
             return cb_before_resource_load_(request, false);
 

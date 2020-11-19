@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=2cc37369b97dcd34cc0e1a0574526230a5a6ab39$
+// $hash=93db4735756895c8b3bfcb15fab1186bc2494a99$
 //
 
 #ifndef CEF_LIBCEF_DLL_CPPTOC_TEST_TRANSLATOR_TEST_SCOPED_CLIENT_CHILD_CPPTOC_H_
@@ -32,6 +32,7 @@ class CefTranslatorTestScopedClientChildCppToC
                              cef_translator_test_scoped_client_child_t> {
  public:
   CefTranslatorTestScopedClientChildCppToC();
+  virtual ~CefTranslatorTestScopedClientChildCppToC();
 };
 
 #endif  // CEF_LIBCEF_DLL_CPPTOC_TEST_TRANSLATOR_TEST_SCOPED_CLIENT_CHILD_CPPTOC_H_

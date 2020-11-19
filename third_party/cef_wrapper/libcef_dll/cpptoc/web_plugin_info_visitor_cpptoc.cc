@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,11 +9,12 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=816066f7dd4898066b737cc6a990a8b384d3ae9a$
+// $hash=9bf14398237548c7290ae748ac62833f3d0f1830$
 //
 
 #include "libcef_dll/cpptoc/web_plugin_info_visitor_cpptoc.h"
 #include "libcef_dll/ctocpp/web_plugin_info_ctocpp.h"
+#include "libcef_dll/shutdown_checker.h"
 
 namespace {
 
@@ -24,6 +25,8 @@ web_plugin_info_visitor_visit(struct _cef_web_plugin_info_visitor_t* self,
                               cef_web_plugin_info_t* info,
                               int count,
                               int total) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -50,6 +53,12 @@ CefWebPluginInfoVisitorCppToC::CefWebPluginInfoVisitorCppToC() {
   GetStruct()->visit = web_plugin_info_visitor_visit;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefWebPluginInfoVisitorCppToC::~CefWebPluginInfoVisitorCppToC() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 CefRefPtr<CefWebPluginInfoVisitor> CefCppToCRefCounted<
     CefWebPluginInfoVisitorCppToC,
@@ -58,16 +67,8 @@ CefRefPtr<CefWebPluginInfoVisitor> CefCppToCRefCounted<
                                                   cef_web_plugin_info_visitor_t*
                                                       s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCppToCRefCounted<CefWebPluginInfoVisitorCppToC,
-                        CefWebPluginInfoVisitor,
-                        cef_web_plugin_info_visitor_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType

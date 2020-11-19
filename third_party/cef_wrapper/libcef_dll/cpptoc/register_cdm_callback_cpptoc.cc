@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,10 +9,11 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=22598eaff6bdb3ebecc52d1161ed222203216963$
+// $hash=4ec6b7d3ac59768907b1096d463f76a6caa45c1e$
 //
 
 #include "libcef_dll/cpptoc/register_cdm_callback_cpptoc.h"
+#include "libcef_dll/shutdown_checker.h"
 
 namespace {
 
@@ -22,6 +23,8 @@ void CEF_CALLBACK register_cdm_callback_on_cdm_registration_complete(
     struct _cef_register_cdm_callback_t* self,
     cef_cdm_registration_error_t result,
     const cef_string_t* error_message) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -43,6 +46,12 @@ CefRegisterCdmCallbackCppToC::CefRegisterCdmCallbackCppToC() {
       register_cdm_callback_on_cdm_registration_complete;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefRegisterCdmCallbackCppToC::~CefRegisterCdmCallbackCppToC() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 CefRefPtr<CefRegisterCdmCallback> CefCppToCRefCounted<
     CefRegisterCdmCallbackCppToC,
@@ -51,16 +60,8 @@ CefRefPtr<CefRegisterCdmCallback> CefCppToCRefCounted<
                                                 cef_register_cdm_callback_t*
                                                     s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCppToCRefCounted<CefRegisterCdmCallbackCppToC,
-                        CefRegisterCdmCallback,
-                        cef_register_cdm_callback_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType CefCppToCRefCounted<CefRegisterCdmCallbackCppToC,

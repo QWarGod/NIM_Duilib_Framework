@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,14 +9,17 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=eb26fb79e218ac49035cc0097fe82f394e880df7$
+// $hash=b1c7af22f4bb4b7da664dc6bb7bd057efda70222$
 //
 
 #include "libcef_dll/ctocpp/request_callback_ctocpp.h"
+#include "libcef_dll/shutdown_checker.h"
 
 // VIRTUAL METHODS - Body may be edited by hand.
 
-void CefRequestCallbackCToCpp::Continue(bool allow) {
+NO_SANITIZE("cfi-icall") void CefRequestCallbackCToCpp::Continue(bool allow) {
+  shutdown_checker::AssertNotShutdown();
+
   cef_request_callback_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, cont))
     return;
@@ -27,7 +30,9 @@ void CefRequestCallbackCToCpp::Continue(bool allow) {
   _struct->cont(_struct, allow);
 }
 
-void CefRequestCallbackCToCpp::Cancel() {
+NO_SANITIZE("cfi-icall") void CefRequestCallbackCToCpp::Cancel() {
+  shutdown_checker::AssertNotShutdown();
+
   cef_request_callback_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, cancel))
     return;
@@ -42,6 +47,12 @@ void CefRequestCallbackCToCpp::Cancel() {
 
 CefRequestCallbackCToCpp::CefRequestCallbackCToCpp() {}
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefRequestCallbackCToCpp::~CefRequestCallbackCToCpp() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 cef_request_callback_t* CefCToCppRefCounted<
     CefRequestCallbackCToCpp,
@@ -49,16 +60,8 @@ cef_request_callback_t* CefCToCppRefCounted<
     cef_request_callback_t>::UnwrapDerived(CefWrapperType type,
                                            CefRequestCallback* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount CefCToCppRefCounted<CefRequestCallbackCToCpp,
-                                         CefRequestCallback,
-                                         cef_request_callback_t>::DebugObjCt =
-    0;
-#endif
 
 template <>
 CefWrapperType CefCToCppRefCounted<CefRequestCallbackCToCpp,

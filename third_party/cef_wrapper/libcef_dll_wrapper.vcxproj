@@ -205,7 +205,7 @@
       <StringPooling>true</StringPooling>
       <TreatWarningAsError>true</TreatWarningAsError>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>NDEBUG;_NDEBUG;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;WIN32;_WIN32;_WINDOWS;UNICODE;_UNICODE;WINVER=0x0602;_WIN32_WINNT=0x602;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;PSAPI_VERSION=1;CEF_USE_SANDBOX;CEF_USE_ATL;USING_CEF_SHARED;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_NDEBUG;__STDC_CONSTANT_MACROS;__STDC_FORMAT_MACROS;WIN32;_WIN32;_WINDOWS;UNICODE;_UNICODE;WINVER=0x0602;_WIN32_WINNT=0x602;NOMINMAX;WIN32_LEAN_AND_MEAN;_HAS_EXCEPTIONS=0;PSAPI_VERSION=1;CEF_USE_SANDBOX;CEF_USE_ATL;WRAPPING_CEF_SHARED;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
@@ -381,15 +381,22 @@
     <ClInclude Include="libcef_dll\cpptoc\accessibility_handler_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\base_ref_counted_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\base_scoped_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\cookie_access_filter_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\cpptoc_ref_counted.h" />
     <ClInclude Include="libcef_dll\cpptoc\cpptoc_scoped.h" />
     <ClInclude Include="libcef_dll\cpptoc\download_image_callback_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\extension_handler_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\media_observer_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\media_route_create_callback_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\menu_model_delegate_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\register_cdm_callback_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\resource_request_handler_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\server_handler_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\test\translator_test_ref_ptr_client_child_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\test\translator_test_ref_ptr_client_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\test\translator_test_scoped_client_child_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\test\translator_test_scoped_client_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\v8array_buffer_release_callback_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\v8interceptor_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\views\browser_view_delegate_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\views\button_delegate_cpptoc.h" />
@@ -400,8 +407,18 @@
     <ClInclude Include="libcef_dll\cpptoc\views\window_delegate_cpptoc.h" />
     <ClInclude Include="libcef_dll\ctocpp\ctocpp_ref_counted.h" />
     <ClInclude Include="libcef_dll\ctocpp\ctocpp_scoped.h" />
+    <ClInclude Include="libcef_dll\ctocpp\extension_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\get_extension_resource_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\image_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\media_router_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\media_route_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\media_sink_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\media_source_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\registration_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\resource_read_callback_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\resource_skip_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\select_client_certificate_callback_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\server_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\sslstatus_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\test\translator_test_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\test\translator_test_ref_ptr_library_child_child_ctocpp.h" />
@@ -419,6 +436,7 @@
     <ClInclude Include="libcef_dll\ctocpp\views\label_button_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\views\layout_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\views\menu_button_ctocpp.h" />
+    <ClInclude Include="libcef_dll\ctocpp\views\menu_button_pressed_lock_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\views\panel_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\views\scroll_view_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\views\textfield_ctocpp.h" />
@@ -428,6 +446,7 @@
     <ClInclude Include="libcef_dll\ctocpp\x509certificate_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\x509cert_principal_ctocpp.h" />
     <ClInclude Include="libcef_dll\ptr_util.h" />
+    <ClInclude Include="libcef_dll\shutdown_checker.h" />
     <ClInclude Include="libcef_dll\transfer_util.h" />
     <ClInclude Include="libcef_dll\wrapper_types.h" />
     <ClInclude Include="libcef_dll\cpptoc\app_cpptoc.h" />
@@ -446,8 +465,6 @@
     <ClInclude Include="libcef_dll\cpptoc\end_tracing_callback_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\find_handler_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\focus_handler_cpptoc.h" />
-    <ClInclude Include="libcef_dll\cpptoc\geolocation_handler_cpptoc.h" />
-    <ClInclude Include="libcef_dll\cpptoc\get_geolocation_callback_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\jsdialog_handler_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\keyboard_handler_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\life_span_handler_cpptoc.h" />
@@ -492,7 +509,6 @@
     <ClInclude Include="libcef_dll\ctocpp\drag_data_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\file_dialog_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\frame_ctocpp.h" />
-    <ClInclude Include="libcef_dll\ctocpp\geolocation_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\jsdialog_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\list_value_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\menu_model_ctocpp.h" />
@@ -705,13 +721,20 @@
     <ClCompile Include="libcef_dll\cpptoc\accessibility_handler_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\base_ref_counted_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\base_scoped_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\cookie_access_filter_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\download_image_callback_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\extension_handler_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\media_observer_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\media_route_create_callback_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\menu_model_delegate_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\register_cdm_callback_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\resource_request_handler_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\server_handler_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\test\translator_test_ref_ptr_client_child_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\test\translator_test_ref_ptr_client_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\test\translator_test_scoped_client_child_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\test\translator_test_scoped_client_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\v8array_buffer_release_callback_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\v8interceptor_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\views\browser_view_delegate_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\views\button_delegate_cpptoc.cc" />
@@ -720,8 +743,18 @@
     <ClCompile Include="libcef_dll\cpptoc\views\textfield_delegate_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\views\view_delegate_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\views\window_delegate_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\extension_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\get_extension_resource_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\image_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\media_router_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\media_route_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\media_sink_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\media_source_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\registration_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\resource_read_callback_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\resource_skip_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\select_client_certificate_callback_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\server_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\sslstatus_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\test\translator_test_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\test\translator_test_ref_ptr_library_child_child_ctocpp.cc" />
@@ -739,6 +772,7 @@
     <ClCompile Include="libcef_dll\ctocpp\views\label_button_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\views\layout_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\views\menu_button_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\ctocpp\views\menu_button_pressed_lock_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\views\panel_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\views\scroll_view_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\views\textfield_ctocpp.cc" />
@@ -747,6 +781,7 @@
     <ClCompile Include="libcef_dll\ctocpp\waitable_event_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\x509certificate_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\x509cert_principal_ctocpp.cc" />
+    <ClCompile Include="libcef_dll\shutdown_checker.cc" />
     <ClCompile Include="libcef_dll\transfer_util.cc" />
     <ClCompile Include="libcef_dll\base\cef_atomicops_x86_gcc.cc" />
     <ClCompile Include="libcef_dll\base\cef_bind_helpers.cc" />
@@ -758,7 +793,6 @@
     <ClCompile Include="libcef_dll\base\cef_ref_counted.cc" />
     <ClCompile Include="libcef_dll\base\cef_string16.cc" />
     <ClCompile Include="libcef_dll\base\cef_thread_checker_impl.cc" />
-    <ClCompile Include="libcef_dll\base\cef_thread_collision_warner.cc" />
     <ClCompile Include="libcef_dll\base\cef_weak_ptr.cc" />
     <ClCompile Include="libcef_dll\cpptoc\app_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\browser_process_handler_cpptoc.cc" />
@@ -775,8 +809,6 @@
     <ClCompile Include="libcef_dll\cpptoc\end_tracing_callback_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\find_handler_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\focus_handler_cpptoc.cc" />
-    <ClCompile Include="libcef_dll\cpptoc\geolocation_handler_cpptoc.cc" />
-    <ClCompile Include="libcef_dll\cpptoc\get_geolocation_callback_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\jsdialog_handler_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\keyboard_handler_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\life_span_handler_cpptoc.cc" />
@@ -821,7 +853,6 @@
     <ClCompile Include="libcef_dll\ctocpp\drag_data_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\file_dialog_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\frame_ctocpp.cc" />
-    <ClCompile Include="libcef_dll\ctocpp\geolocation_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\jsdialog_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\list_value_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\menu_model_ctocpp.cc" />

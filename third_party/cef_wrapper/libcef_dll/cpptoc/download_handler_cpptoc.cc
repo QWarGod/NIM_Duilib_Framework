@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=34d34f4a980b476678152ac69842f7d0b3a95a36$
+// $hash=8ea9a11f03f3a303839fd15a0fd55fc2e0b9cd1c$
 //
 
 #include "libcef_dll/cpptoc/download_handler_cpptoc.h"
@@ -17,6 +17,7 @@
 #include "libcef_dll/ctocpp/browser_ctocpp.h"
 #include "libcef_dll/ctocpp/download_item_callback_ctocpp.h"
 #include "libcef_dll/ctocpp/download_item_ctocpp.h"
+#include "libcef_dll/shutdown_checker.h"
 
 namespace {
 
@@ -28,6 +29,8 @@ download_handler_on_before_download(struct _cef_download_handler_t* self,
                                     struct _cef_download_item_t* download_item,
                                     const cef_string_t* suggested_name,
                                     cef_before_download_callback_t* callback) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -62,6 +65,8 @@ download_handler_on_download_updated(struct _cef_download_handler_t* self,
                                      cef_browser_t* browser,
                                      struct _cef_download_item_t* download_item,
                                      cef_download_item_callback_t* callback) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -96,6 +101,12 @@ CefDownloadHandlerCppToC::CefDownloadHandlerCppToC() {
   GetStruct()->on_download_updated = download_handler_on_download_updated;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefDownloadHandlerCppToC::~CefDownloadHandlerCppToC() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 CefRefPtr<CefDownloadHandler> CefCppToCRefCounted<
     CefDownloadHandlerCppToC,
@@ -103,16 +114,8 @@ CefRefPtr<CefDownloadHandler> CefCppToCRefCounted<
     cef_download_handler_t>::UnwrapDerived(CefWrapperType type,
                                            cef_download_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount CefCppToCRefCounted<CefDownloadHandlerCppToC,
-                                         CefDownloadHandler,
-                                         cef_download_handler_t>::DebugObjCt =
-    0;
-#endif
 
 template <>
 CefWrapperType CefCppToCRefCounted<CefDownloadHandlerCppToC,

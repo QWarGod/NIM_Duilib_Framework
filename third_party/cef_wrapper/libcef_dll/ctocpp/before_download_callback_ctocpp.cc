@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,15 +9,19 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=9f7b5d40247a23361c6b5622dbfba9fc50663a4f$
+// $hash=be4b247da2987252e1471149aade76c4d4a34394$
 //
 
 #include "libcef_dll/ctocpp/before_download_callback_ctocpp.h"
+#include "libcef_dll/shutdown_checker.h"
 
 // VIRTUAL METHODS - Body may be edited by hand.
 
+NO_SANITIZE("cfi-icall")
 void CefBeforeDownloadCallbackCToCpp::Continue(const CefString& download_path,
                                                bool show_dialog) {
+  shutdown_checker::AssertNotShutdown();
+
   cef_before_download_callback_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, cont))
     return;
@@ -34,6 +38,12 @@ void CefBeforeDownloadCallbackCToCpp::Continue(const CefString& download_path,
 
 CefBeforeDownloadCallbackCToCpp::CefBeforeDownloadCallbackCToCpp() {}
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefBeforeDownloadCallbackCToCpp::~CefBeforeDownloadCallbackCToCpp() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 cef_before_download_callback_t* CefCToCppRefCounted<
     CefBeforeDownloadCallbackCToCpp,
@@ -42,16 +52,8 @@ cef_before_download_callback_t* CefCToCppRefCounted<
                                                    CefBeforeDownloadCallback*
                                                        c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCToCppRefCounted<CefBeforeDownloadCallbackCToCpp,
-                        CefBeforeDownloadCallback,
-                        cef_before_download_callback_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType

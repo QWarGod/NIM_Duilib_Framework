@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,15 +9,19 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=ed31bf8c6b15dfbe06bc8cc725d845d6b09bcbcf$
+// $hash=07dbe8f9680d767646cafcdaa5e790003d059cf5$
 //
 
 #include "libcef_dll/ctocpp/jsdialog_callback_ctocpp.h"
+#include "libcef_dll/shutdown_checker.h"
 
 // VIRTUAL METHODS - Body may be edited by hand.
 
+NO_SANITIZE("cfi-icall")
 void CefJSDialogCallbackCToCpp::Continue(bool success,
                                          const CefString& user_input) {
+  shutdown_checker::AssertNotShutdown();
+
   cef_jsdialog_callback_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, cont))
     return;
@@ -34,6 +38,12 @@ void CefJSDialogCallbackCToCpp::Continue(bool success,
 
 CefJSDialogCallbackCToCpp::CefJSDialogCallbackCToCpp() {}
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefJSDialogCallbackCToCpp::~CefJSDialogCallbackCToCpp() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 cef_jsdialog_callback_t* CefCToCppRefCounted<
     CefJSDialogCallbackCToCpp,
@@ -41,16 +51,8 @@ cef_jsdialog_callback_t* CefCToCppRefCounted<
     cef_jsdialog_callback_t>::UnwrapDerived(CefWrapperType type,
                                             CefJSDialogCallback* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount CefCToCppRefCounted<CefJSDialogCallbackCToCpp,
-                                         CefJSDialogCallback,
-                                         cef_jsdialog_callback_t>::DebugObjCt =
-    0;
-#endif
 
 template <>
 CefWrapperType CefCToCppRefCounted<CefJSDialogCallbackCToCpp,

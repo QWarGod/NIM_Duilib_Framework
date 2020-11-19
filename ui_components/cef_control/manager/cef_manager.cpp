@@ -2,7 +2,6 @@
 #include "cef_manager.h"
 #include "include/wrapper/cef_closure_task.h"
 #include "include/base/cef_bind.h"
-
 #include "cef_control/app/client_app.h"
 #include "cef_control/handler/browser_handler.h"
 
@@ -95,17 +94,35 @@ namespace nim_comp {
 #if !defined(SUPPORT_CEF)
         return true;
 #endif
+        // Enable High-DPI support on Windows 7 or newer.
+        CefEnableHighDPISupport();
+
         is_enable_offset_render_ = is_enable_offset_render;
 
         CefMainArgs main_args(GetModuleHandle(NULL));
-        CefRefPtr<ClientApp> app(new ClientApp);
 
-        // 如果是在子进程中调用，会堵塞直到子进程退出，并且exit_code返回大于等于0
-        // 如果在Browser进程中调用，则立即返回-1
-        int exit_code = CefExecuteProcess(main_args, app.get(), NULL);
+        void* sandbox_info = NULL;
 
+#if defined(CEF_USE_SANDBOX)
+        // Manage the life span of the sandbox information object. This is necessary
+        // for sandbox support on Windows. See cef_sandbox_win.h for complete details.
+        CefScopedSandboxInfo scoped_sandbox;
+        sandbox_info = scoped_sandbox.sandbox_info();
+#endif
+
+        // Parse command-line arguments.
+        /*CefRefPtr<CefCommandLine> command_line = CefCommandLine::CreateCommandLine();
+        command_line->InitFromString(::GetCommandLineW());*/
+
+        // Create a ClientApp of the correct type.
+        CefRefPtr<CefApp> app(new ClientApp());
+
+        // Execute the secondary process, if any.
+        int exit_code = CefExecuteProcess(main_args, app, sandbox_info);
+
+        // cef多进程的时候，这里返回值大于0，需要直接退出
         if (exit_code >= 0)
-            return false;
+            return 0;
 
         GetCefSetting(app_data_dir, settings);
 
@@ -173,7 +190,9 @@ namespace nim_comp {
         if (false == nbase::FilePathIsExist(app_data_dir, true))
             nbase::CreateDirectory(app_data_dir);
 
+#if !defined(CEF_USE_SANDBOX)
         settings.no_sandbox = true;
+#endif
 
         // 设置localstorage，不要在路径末尾加"\\"，否则运行时会报错
         CefString(&settings.cache_path) = app_data_dir + L"CefLocalStorage";
@@ -184,9 +203,9 @@ namespace nim_comp {
         // 调试模型下使用单进程，但是千万不要在release发布版本中使用，官方已经不推荐使用单进程模式
         // cef1916版本debug模式:在单进程模式下程序退出时会触发中断
 #ifdef _DEBUG
-        settings.single_process = true;
+        //settings.single_process = true;
 #else
-        settings.single_process = false;
+        //settings.single_process = false;
 #endif
 
         // cef2623、2526版本debug模式:在使用multi_threaded_message_loop时退出程序会触发中断
@@ -198,4 +217,30 @@ namespace nim_comp {
         settings.windowless_rendering_enabled = is_enable_offset_render_;
     }
 
+    //
+    void CefManager::InitCookies(const CookieArr& cookies, const std::wstring& domain) {
+
+        CefRefPtr<CefCookieManager> manager = CefCookieManager::GetGlobalManager(NULL);
+
+        for (auto& iter : cookies) {
+            CefCookie cookie;
+            CefString(&cookie.name).FromWString(iter.first.c_str());
+            CefString(&cookie.value).FromWString(iter.second.c_str());
+            CefString(&cookie.domain).FromWString(domain.c_str());
+            CefString(&cookie.path).FromASCII("/");
+            //cookie.has_expires = true;//设置Cookie时间
+            //cookie.expires.year = 2200;
+            //cookie.expires.month = 4;
+            //cookie.expires.day_of_week = 5;
+            //cookie.expires.day_of_month = 11;
+            cookie.expires.hour = 2;
+            CefString newDomain = CefString(L"https://" + domain);
+            //CefRefPtr<CefSetCookieCallback>  cb;
+            //CefPostTask(TID_IO, NewCefRunnableMethod(manager.get(), &CefCookieManager::SetCookie, newDomain, cookie, cb) );
+            manager->SetCookie(newDomain, cookie, NULL);
+        }
+
+        return;
+    }
 }
+

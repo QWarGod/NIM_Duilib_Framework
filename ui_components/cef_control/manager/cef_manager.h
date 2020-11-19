@@ -6,6 +6,8 @@
  */
 #pragma once
 #include "include/cef_app.h"
+#include <vector>
+#include <string>
 
 namespace nim_comp {
     /** @class CefMessageLoopDispatcher
@@ -25,6 +27,7 @@ namespace nim_comp {
     };
 
 
+    typedef   std::vector < std::pair<std::wstring, std::wstring>> CookieArr;
     /** @class CefManager
      * @brief Cef组件初始化和销毁
      */
@@ -76,6 +79,9 @@ namespace nim_comp {
         // 在Cef浏览器对象销毁后发送WM_QUIT消息
         void PostQuitMessage(int nExitCode);
 
+        //初始化cookie
+        void InitCookies(const CookieArr& cookies, const std::wstring& domain);
+
       private:
         /**
         * 设置cef配置信息
@@ -84,6 +90,8 @@ namespace nim_comp {
         * @return void	无返回值
         */
         void GetCefSetting(const std::wstring& app_data_dir, CefSettings& settings);
+
+
 
       private:
         CefMessageLoopDispatcher message_dispatcher_;

@@ -113,7 +113,7 @@ class BrowserBox : public ui::VBox {
     void OnTitleChange(const std::wstring& title);
     void OnUrlChange(const std::wstring& url);
     bool OnLinkClick(const std::wstring& url);
-    CefRequestHandler::ReturnValue OnBeforeNavigate(CefRefPtr<CefRequest> request, bool is_redirect);
+    cef_return_value_t OnBeforeNavigate(CefRefPtr<CefRequest> request, bool is_redirect);
     void OnLoadingStateChange(bool isLoading, bool canGoBack, bool canGoForward);
     void OnLoadStart();
     void OnLoadEnd(int httpStatusCode);

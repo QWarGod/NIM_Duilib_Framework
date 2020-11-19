@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,16 +9,20 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=6cb42b7225acbf15f3a90243cb7d0edf55cf4f46$
+// $hash=c013c03a8fd2436c90587a96bb4960869888667a$
 //
 
 #include "libcef_dll/ctocpp/print_dialog_callback_ctocpp.h"
 #include "libcef_dll/ctocpp/print_settings_ctocpp.h"
+#include "libcef_dll/shutdown_checker.h"
 
 // VIRTUAL METHODS - Body may be edited by hand.
 
+NO_SANITIZE("cfi-icall")
 void CefPrintDialogCallbackCToCpp::Continue(
     CefRefPtr<CefPrintSettings> settings) {
+  shutdown_checker::AssertNotShutdown();
+
   cef_print_dialog_callback_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, cont))
     return;
@@ -34,7 +38,9 @@ void CefPrintDialogCallbackCToCpp::Continue(
   _struct->cont(_struct, CefPrintSettingsCToCpp::Unwrap(settings));
 }
 
-void CefPrintDialogCallbackCToCpp::Cancel() {
+NO_SANITIZE("cfi-icall") void CefPrintDialogCallbackCToCpp::Cancel() {
+  shutdown_checker::AssertNotShutdown();
+
   cef_print_dialog_callback_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, cancel))
     return;
@@ -49,6 +55,12 @@ void CefPrintDialogCallbackCToCpp::Cancel() {
 
 CefPrintDialogCallbackCToCpp::CefPrintDialogCallbackCToCpp() {}
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefPrintDialogCallbackCToCpp::~CefPrintDialogCallbackCToCpp() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 cef_print_dialog_callback_t* CefCToCppRefCounted<
     CefPrintDialogCallbackCToCpp,
@@ -56,16 +68,8 @@ cef_print_dialog_callback_t* CefCToCppRefCounted<
     cef_print_dialog_callback_t>::UnwrapDerived(CefWrapperType type,
                                                 CefPrintDialogCallback* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCToCppRefCounted<CefPrintDialogCallbackCToCpp,
-                        CefPrintDialogCallback,
-                        cef_print_dialog_callback_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType CefCToCppRefCounted<CefPrintDialogCallbackCToCpp,

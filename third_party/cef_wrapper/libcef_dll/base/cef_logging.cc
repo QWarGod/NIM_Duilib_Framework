@@ -182,7 +182,6 @@ LogMessage::LogMessage(const char* file,
 }
 
 LogMessage::~LogMessage() {
-  stream_ << std::endl;
   std::string str_newline(stream_.str());
   cef_log(file_, line_, severity_, str_newline.c_str());
 }
@@ -253,14 +252,16 @@ ErrnoLogMessage::~ErrnoLogMessage() {
 }
 #endif  // OS_WIN
 
-std::ostream& operator<<(std::ostream& out, const wchar_t* wstr) {
-  cef_string_utf8_t str = {0};
-  std::wstring tmp_str(wstr);
-  cef_string_wide_to_utf8(wstr, tmp_str.size(), &str);
-  out << str.str;
-  cef_string_utf8_clear(&str);
-  return out;
-}
-
 }  // namespace logging
 }  // namespace cef
+
+std::ostream& operator<<(std::ostream& out, const wchar_t* wstr) {
+  std::wstring tmp_str(wstr);
+  if (!tmp_str.empty()) {
+    cef_string_utf8_t str = {0};
+    cef_string_wide_to_utf8(wstr, tmp_str.size(), &str);
+    out << str.str;
+    cef_string_utf8_clear(&str);
+  }
+  return out;
+}

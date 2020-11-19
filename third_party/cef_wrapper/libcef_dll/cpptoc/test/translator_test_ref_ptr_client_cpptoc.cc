@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,11 +9,12 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=b04a2cadf7325090a53b435cf777173216802ec1$
+// $hash=83b45b70a01ab7ae99b015e0017446f623e484b6$
 //
 
 #include "libcef_dll/cpptoc/test/translator_test_ref_ptr_client_cpptoc.h"
 #include "libcef_dll/cpptoc/test/translator_test_ref_ptr_client_child_cpptoc.h"
+#include "libcef_dll/shutdown_checker.h"
 
 namespace {
 
@@ -21,6 +22,8 @@ namespace {
 
 int CEF_CALLBACK translator_test_ref_ptr_client_get_value(
     struct _cef_translator_test_ref_ptr_client_t* self) {
+  shutdown_checker::AssertNotShutdown();
+
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   DCHECK(self);
@@ -42,6 +45,12 @@ CefTranslatorTestRefPtrClientCppToC::CefTranslatorTestRefPtrClientCppToC() {
   GetStruct()->get_value = translator_test_ref_ptr_client_get_value;
 }
 
+// DESTRUCTOR - Do not edit by hand.
+
+CefTranslatorTestRefPtrClientCppToC::~CefTranslatorTestRefPtrClientCppToC() {
+  shutdown_checker::AssertNotShutdown();
+}
+
 template <>
 CefRefPtr<CefTranslatorTestRefPtrClient>
 CefCppToCRefCounted<CefTranslatorTestRefPtrClientCppToC,
@@ -54,16 +63,8 @@ CefCppToCRefCounted<CefTranslatorTestRefPtrClientCppToC,
         reinterpret_cast<cef_translator_test_ref_ptr_client_child_t*>(s));
   }
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
-
-#if DCHECK_IS_ON()
-template <>
-base::AtomicRefCount
-    CefCppToCRefCounted<CefTranslatorTestRefPtrClientCppToC,
-                        CefTranslatorTestRefPtrClient,
-                        cef_translator_test_ref_ptr_client_t>::DebugObjCt = 0;
-#endif
 
 template <>
 CefWrapperType

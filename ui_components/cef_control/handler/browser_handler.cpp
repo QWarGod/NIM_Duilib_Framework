@@ -1,13 +1,20 @@
 #include "stdafx.h"
 #include "browser_handler.h"
 #include "include/cef_frame.h"
-#include "include/wrapper/cef_helpers.h"
 #include "cef_control/manager/cef_manager.h"
 #include "cef_control/util/util.h"
 #include "cef_control/app/ipc_string_define.h"
 #include "cef_control/app/cef_js_bridge.h"
+#include "include/wrapper/cef_helpers.h"
 
 namespace nim_comp {
+    // added_by yingchun.xu 2020-11-05
+    // Custom menu command Ids.
+    enum client_menu_ids {
+        CLIENT_ID_COPY_IMAGE = MENU_ID_USER_FIRST, // 复制
+        CLIENT_ID_SAVE_IMAGE_AS,                   // 另存为
+    };
+
     BrowserHandler::BrowserHandler() {
         handle_delegate_ = NULL;
         is_focus_oneditable_field_ = false;
@@ -60,7 +67,10 @@ namespace nim_comp {
         CefPostTask(TID_UI, new CloseAllBrowserTask(browser_list_));
     }
 
-    bool BrowserHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefProcessId source_process, CefRefPtr<CefProcessMessage> message) {
+    bool BrowserHandler::OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
+            CefRefPtr<CefFrame> frame,
+            CefProcessId source_process,
+            CefRefPtr<CefProcessMessage> message) {
         // 处理render进程发来的消息
         std::string message_name = message->GetName();
 
@@ -69,9 +79,9 @@ namespace nim_comp {
             return true;
 
         } else if (message_name == kCallCppFunctionMessage) {
-            CefString fun_name	= message->GetArgumentList()->GetString(0);
-            CefString param		= message->GetArgumentList()->GetString(1);
-            int js_callback_id	= message->GetArgumentList()->GetInt(2);
+            CefString fun_name = message->GetArgumentList()->GetString(0);
+            CefString param = message->GetArgumentList()->GetString(1);
+            int js_callback_id = message->GetArgumentList()->GetInt(2);
 
             if (handle_delegate_)
                 handle_delegate_->OnExecuteCppFunc(fun_name, param, js_callback_id, browser);
@@ -90,7 +100,7 @@ namespace nim_comp {
     }
 
     #pragma region CefLifeSpanHandler
-// CefLifeSpanHandler methods
+    // CefLifeSpanHandler methods
     bool BrowserHandler::OnBeforePopup(CefRefPtr<CefBrowser> browser,
                                        CefRefPtr<CefFrame> frame,
                                        const CefString& target_url,
@@ -101,6 +111,7 @@ namespace nim_comp {
                                        CefWindowInfo& windowInfo,
                                        CefRefPtr<CefClient>& client,
                                        CefBrowserSettings& settings,
+                                       CefRefPtr<CefDictionaryValue>& extra_info,
                                        bool* no_javascript_access) {
         // 让新的链接在原浏览器对象中打开
         if (browser_.get() && !target_url.empty()) {
@@ -179,7 +190,7 @@ namespace nim_comp {
     #pragma endregion
 
     #pragma region CefRenderHandler
-// CefRenderHandler methods
+    // CefRenderHandler methods
     bool BrowserHandler::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
         RECT window_rect = { 0 };
         HWND root_window = GetAncestor(hwnd_, GA_ROOT);
@@ -192,26 +203,25 @@ namespace nim_comp {
         return false;
     }
 
-    bool BrowserHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
+    void BrowserHandler::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
         if (handle_delegate_) {
             rect.x = 0;
             rect.y = 0;
             rect.width = rect_cef_control_.right - rect_cef_control_.left;
             rect.height = rect_cef_control_.bottom - rect_cef_control_.top;
-            return true;
+            return;
 
         } else {
             RECT clientRect;
 
             if (!::GetClientRect(hwnd_, &clientRect))
-                return false;
+                return;
 
             rect.x = rect.y = 0;
             rect.width = clientRect.right;
             rect.height = clientRect.bottom;
-            return true;
+            return;
         }
-
     }
 
     bool BrowserHandler::GetScreenPoint(CefRefPtr<CefBrowser> browser, int viewX, int viewY, int& screenX, int& screenY) {
@@ -263,17 +273,32 @@ namespace nim_comp {
     #pragma endregion
 
     #pragma region CefContextMenuHandler
-// CefContextMenuHandler methods
+    // CefContextMenuHandler methods
     void BrowserHandler::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
             CefRefPtr<CefFrame> frame,
             CefRefPtr<CefContextMenuParams> params,
             CefRefPtr<CefMenuModel> model) {
         REQUIRE_UI_THREAD();
 
+        // added_by yingchun.xu 2020-11-05
+        // 点击图片的时候，显示复制图片的右键菜单
+        if ((params->GetTypeFlags() & CM_TYPEFLAG_MEDIA) != 0 && (params->GetMediaType() & CM_MEDIATYPE_IMAGE != 0)) {
+            if (model->GetCount() > 0) {
+                // 禁止右键菜单
+                model->Clear();
+            }
+
+            model->InsertItemAt(0, CLIENT_ID_COPY_IMAGE, L"复制图片");
+            model->InsertItemAt(1, CLIENT_ID_SAVE_IMAGE_AS, L"图片另存为...");
+            model->InsertSeparatorAt(2);
+            model->AddItem(MENU_ID_PRINT, L"打印");
+        }
+
         if (handle_delegate_) {
             handle_delegate_->OnBeforeContextMenu(browser, frame, params, model);
 
         } else {
+
             // Customize the context menu...
             if ((params->GetTypeFlags() & (CM_TYPEFLAG_PAGE | CM_TYPEFLAG_FRAME)) != 0) {
                 if (model->GetCount() > 0) {
@@ -289,6 +314,14 @@ namespace nim_comp {
     }
 
     bool BrowserHandler::OnContextMenuCommand(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefContextMenuParams> params, int command_id, EventFlags event_flags) {
+
+        if (command_id == CLIENT_ID_COPY_IMAGE) {
+            frame->Copy();
+
+        } else if (command_id == CLIENT_ID_SAVE_IMAGE_AS) {
+            frame->GetBrowser().get()->GetHost().get()->StartDownload(frame->GetURL());
+        }
+
         if (handle_delegate_)
             return handle_delegate_->OnContextMenuCommand(browser, frame, params, command_id, event_flags);
 
@@ -304,7 +337,7 @@ namespace nim_comp {
 
     #pragma region CefDisplayHandler
 
-// CefDisplayHandler methods
+    // CefDisplayHandler methods
     void BrowserHandler::OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& url) {
         // Update the URL in the address bar...
         if (handle_delegate_)
@@ -317,7 +350,11 @@ namespace nim_comp {
             nbase::ThreadManager::PostTask(kThreadUI, nbase::Bind(&HandlerDelegate::OnTitleChange, handle_delegate_, browser, title));
     }
 
-    bool BrowserHandler::OnConsoleMessage(CefRefPtr<CefBrowser> browser, const CefString& message, const CefString& source, int line) {
+    bool BrowserHandler::OnConsoleMessage(CefRefPtr<CefBrowser> browser,
+                                          cef_log_severity_t level,
+                                          const CefString& message,
+                                          const CefString& source,
+                                          int line) {
         // Log a console message...
         return true;
     }
@@ -348,7 +385,13 @@ namespace nim_comp {
             nbase::ThreadManager::PostTask(kThreadUI, nbase::Bind(&HandlerDelegate::OnLoadError, handle_delegate_, browser, frame, errorCode, errorText, failedUrl));
     }
 
-    bool BrowserHandler::OnJSDialog(CefRefPtr<CefBrowser> browser, const CefString& origin_url, JSDialogType dialog_type, const CefString& message_text, const CefString& default_prompt_text, CefRefPtr<CefJSDialogCallback> callback, bool& suppress_message) {
+    bool BrowserHandler::OnJSDialog(CefRefPtr<CefBrowser> browser,
+                                    const CefString& origin_url,
+                                    JSDialogType dialog_type,
+                                    const CefString& message_text,
+                                    const CefString& default_prompt_text,
+                                    CefRefPtr<CefJSDialogCallback> callback,
+                                    bool& suppress_message) {
         // release时阻止弹出js对话框
 #ifndef _DEBUG
         suppress_message = true;
@@ -358,7 +401,11 @@ namespace nim_comp {
     }
 
     // CefRequestHandler methods
-    bool BrowserHandler::OnBeforeBrowse(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefRequest> request, bool is_redirect) {
+    bool BrowserHandler::OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
+                                        CefRefPtr<CefFrame> frame,
+                                        CefRefPtr<CefRequest> request,
+                                        bool user_gesture,
+                                        bool is_redirect) {
         if (handle_delegate_)
             return handle_delegate_->OnBeforeBrowse(browser, frame, request, is_redirect);
 
@@ -370,7 +417,7 @@ namespace nim_comp {
             handle_delegate_->OnProtocolExecution(browser, url, allow_os_execution);
     }
 
-    CefRequestHandler::ReturnValue BrowserHandler::OnBeforeResourceLoad(
+    cef_return_value_t BrowserHandler::OnBeforeResourceLoad(
         CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefFrame> frame,
         CefRefPtr<CefRequest> request,
@@ -403,6 +450,10 @@ namespace nim_comp {
         CefRefPtr<CefDownloadItem> download_item,
         const CefString& suggested_name,
         CefRefPtr<CefBeforeDownloadCallback> callback) {
+        // added_by yingchun.xu 2020-09-16 fixed download file
+        CEF_REQUIRE_UI_THREAD();
+        // added_end
+
         if (handle_delegate_)
             handle_delegate_->OnBeforeDownload(browser, download_item, suggested_name, callback);
     }
@@ -411,6 +462,8 @@ namespace nim_comp {
         CefRefPtr<CefBrowser> browser,
         CefRefPtr<CefDownloadItem> download_item,
         CefRefPtr<CefDownloadItemCallback> callback) {
+        CEF_REQUIRE_UI_THREAD();
+
         if (handle_delegate_)
             handle_delegate_->OnDownloadUpdated(browser, download_item, callback);
     }
@@ -430,22 +483,4 @@ namespace nim_comp {
             return false;
     }
 
-
-    bool BrowserHandler::OnDragEnter(CefRefPtr<CefBrowser> browser,
-                                     CefRefPtr<CefDragData> dragData,
-                                     CefDragHandler::DragOperationsMask mask) {
-        CEF_REQUIRE_UI_THREAD();
-
-        // Forbid dragging of URLs and files.
-        if ((mask & DRAG_OPERATION_LINK) && !dragData->IsFragment()) {
-            //test_runner::Alert(browser, "cefclient blocks dragging of URLs and files");
-            return true;
-        }
-
-        return false;
-    }
-
-    void BrowserHandler::OnTakeFocus(CefRefPtr<CefBrowser> browser, bool next) {
-        CEF_REQUIRE_UI_THREAD();
-    }
 }

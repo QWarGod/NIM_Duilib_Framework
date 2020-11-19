@@ -1,4 +1,4 @@
-// Copyright (c) 2017 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=0f4a81621659efd51fcc1f985fe11a47edc66920$
+// $hash=cfe482fc913cfa603b98d58e4579e5af667b0ce5$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_THREAD_CTOCPP_H_
@@ -30,6 +30,7 @@ class CefThreadCToCpp
     : public CefCToCppRefCounted<CefThreadCToCpp, CefThread, cef_thread_t> {
  public:
   CefThreadCToCpp();
+  virtual ~CefThreadCToCpp();
 
   // CefThread methods.
   CefRefPtr<CefTaskRunner> GetTaskRunner() OVERRIDE;

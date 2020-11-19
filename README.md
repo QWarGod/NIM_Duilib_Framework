@@ -2,6 +2,10 @@
 
 NIM Duilib 包含了一整套桌面软件的开发部件，与其说这是一个界面库，不如说它是一个开发框架。从原有 Duilib 基础上拓展了一些新的能力，并整合了 Google base 基础类库（线程、内存、闭包等）。您完全可以直接使用这个框架来开发任何你想要的桌面应用。
 
+修改说明：
+> 本分支对cef进行了升级，目前是libcef [chromium80,3987版本](http://opensource.spotify.com/cefbuilds/index.html)
+> 并且添加了mp4的支持，可以在www.html5test.com验证，使用别人编译的库：https://download.csdn.net/download/ldmlrx/12285397
+
 ![GitHub](https://img.shields.io/badge/license-MIT-green.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/u29yl0j7pasopm3h?svg=true)](https://ci.appveyor.com/project/nmgwddj/nim-duilib-framework)
 
@@ -26,10 +30,10 @@ NIM Duilib 包含了一整套桌面软件的开发部件，与其说这是一个
 克隆项目到你的磁盘中
 
 ```bash
-git clone https://github.com/netease-im/NIM_Duilib_Framework
+git clone https://github.com/xmcy0011/NIM_Duilib_Framework
 ```
 
-进入 `NIM_Duilib_Framework/examples` 目录，使用 Visual Studio 2013 Update 5 以上版本 IDE 打开 `examples.sln`，按下 F7 即可编译所有示例程序
+进入 `NIM_Duilib_Framework/examples` 目录，使用 Visual Studio 2017 以上版本 IDE 打开 `examples.sln`，按下 F7 即可编译所有示例程序
 
 ## 文档
 

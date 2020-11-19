@@ -11,7 +11,7 @@
 #include "cef_control/app/cef_js_bridge.h"
 
 namespace nim_comp {
-// BrowserHandler implements CefClient and a number of other interfaces.
+    // BrowserHandler implements CefClient and a number of other interfaces.
     class BrowserHandler :
         public nbase::SupportWeakCallback,
         public CefClient,
@@ -20,8 +20,6 @@ namespace nim_comp {
         public CefContextMenuHandler,
         public CefDisplayHandler,
         public CefDragHandler,
-        public CefFocusHandler,
-        public CefGeolocationHandler,
         public CefJSDialogHandler,
         public CefKeyboardHandler,
         public CefLoadHandler,
@@ -63,13 +61,13 @@ namespace nim_comp {
                                               int command_id,
                                               EventFlags event_flags) = 0;
 
-            virtual void OnAddressChange(CefRefPtr<CefBrowser> browser,	CefRefPtr<CefFrame> frame, const CefString& url) = 0;
+            virtual void OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& url) = 0;
 
             virtual void OnTitleChange(CefRefPtr<CefBrowser> browser, const CefString& title) = 0;
 
             virtual void OnLoadingStateChange(CefRefPtr<CefBrowser> browser, bool isLoading, bool canGoBack, bool canGoForward) = 0;
 
-            virtual void OnLoadStart(CefRefPtr<CefBrowser> browser,	CefRefPtr<CefFrame> frame) = 0;
+            virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame) = 0;
 
             virtual void OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int httpStatusCode) = 0;
 
@@ -101,7 +99,7 @@ namespace nim_comp {
             virtual void OnProtocolExecution(CefRefPtr<CefBrowser> browser, const CefString& url, bool& allow_os_execution) = 0;
 
             // 在非UI线程中被调用
-            virtual ReturnValue OnBeforeResourceLoad(
+            virtual cef_return_value_t OnBeforeResourceLoad(
                 CefRefPtr<CefBrowser> browser,
                 CefRefPtr<CefFrame> frame,
                 CefRefPtr<CefRequest> request,
@@ -172,22 +170,23 @@ namespace nim_comp {
       public:
 
         // CefClient methods. Important to return |this| for the handler callbacks.
-        virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() OVERRIDE {	return this; }
+        virtual CefRefPtr<CefContextMenuHandler> GetContextMenuHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefRenderHandler>  GetRenderHandler() OVERRIDE { return this; }
-        virtual CefRefPtr<CefDisplayHandler> GetDisplayHandler() OVERRIDE{ return this; }
-        virtual CefRefPtr<CefDragHandler> GetDragHandler() OVERRIDE{ return this; }
-        virtual CefRefPtr<CefFocusHandler> GetFocusHandler() OVERRIDE { return this; }
-        virtual CefRefPtr<CefGeolocationHandler> GetGeolocationHandler() OVERRIDE{ return this; }
+        virtual CefRefPtr<CefDisplayHandler> GetDisplayHandler() OVERRIDE { return this; }
+        virtual CefRefPtr<CefDragHandler> GetDragHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefJSDialogHandler> GetJSDialogHandler() {
             return this;
         }
-        virtual CefRefPtr<CefKeyboardHandler> GetKeyboardHandler() OVERRIDE{ return this; }
-        virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() OVERRIDE{ return this; }
-        virtual CefRefPtr<CefLoadHandler> GetLoadHandler() OVERRIDE{ return this; }
-        virtual CefRefPtr<CefRequestHandler> GetRequestHandler() OVERRIDE{ return this; }
+        virtual CefRefPtr<CefKeyboardHandler> GetKeyboardHandler() OVERRIDE { return this; }
+        virtual CefRefPtr<CefLifeSpanHandler> GetLifeSpanHandler() OVERRIDE { return this; }
+        virtual CefRefPtr<CefLoadHandler> GetLoadHandler() OVERRIDE { return this; }
+        virtual CefRefPtr<CefRequestHandler> GetRequestHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefDownloadHandler> GetDownloadHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefDialogHandler> GetDialogHandler() OVERRIDE { return this; }
-        virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser, CefProcessId source_process, CefRefPtr<CefProcessMessage> message)	OVERRIDE;
+        virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
+                                              CefRefPtr<CefFrame> frame,
+                                              CefProcessId source_process,
+                                              CefRefPtr<CefProcessMessage> message)	OVERRIDE;
 
         // CefLifeSpanHandler methods
         virtual bool OnBeforePopup(CefRefPtr<CefBrowser> browser,
@@ -200,6 +199,7 @@ namespace nim_comp {
                                    CefWindowInfo& windowInfo,
                                    CefRefPtr<CefClient>& client,
                                    CefBrowserSettings& settings,
+                                   CefRefPtr<CefDictionaryValue>& extra_info,
                                    bool* no_javascript_access) OVERRIDE;
 
         virtual void OnAfterCreated(CefRefPtr<CefBrowser> browser) OVERRIDE;
@@ -211,7 +211,7 @@ namespace nim_comp {
         // CefRenderHandler methods
         virtual bool GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect& rect) OVERRIDE;
 
-        virtual bool GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) OVERRIDE;
+        virtual void GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) OVERRIDE;
 
         virtual bool GetScreenPoint(CefRefPtr<CefBrowser> browser, int viewX, int viewY, int& screenX, int& screenY) OVERRIDE;
 
@@ -219,9 +219,9 @@ namespace nim_comp {
 
         virtual void OnPopupSize(CefRefPtr<CefBrowser> browser, const CefRect& rect) OVERRIDE;
 
-        virtual void OnPaint(CefRefPtr<CefBrowser> browser,	PaintElementType type, const RectList& dirtyRects, const void* buffer, int width, int height) OVERRIDE;
+        virtual void OnPaint(CefRefPtr<CefBrowser> browser, PaintElementType type, const RectList& dirtyRects, const void* buffer, int width, int height) OVERRIDE;
 
-        virtual void OnCursorChange(CefRefPtr<CefBrowser> browser, CefCursorHandle cursor, CursorType type,	const CefCursorInfo& custom_cursor_info) OVERRIDE;
+        virtual void OnCursorChange(CefRefPtr<CefBrowser> browser, CefCursorHandle cursor, CursorType type, const CefCursorInfo& custom_cursor_info) OVERRIDE;
 
         // CefContextMenuHandler methods
         virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefContextMenuParams> params, CefRefPtr<CefMenuModel> model) OVERRIDE;
@@ -242,16 +242,21 @@ namespace nim_comp {
                                             CefRefPtr<CefFrame> frame) OVERRIDE;
 
         // CefDisplayHandler methods
-        virtual void OnAddressChange(CefRefPtr<CefBrowser> browser,	CefRefPtr<CefFrame> frame, const CefString& url) OVERRIDE;
+        virtual void OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& url) OVERRIDE;
 
         virtual void OnTitleChange(CefRefPtr<CefBrowser> browser, const CefString& title) OVERRIDE;
 
-        virtual bool OnConsoleMessage(CefRefPtr<CefBrowser> browser, const CefString& message, const CefString& source, int line) OVERRIDE;
+        virtual bool OnConsoleMessage(CefRefPtr<CefBrowser> browser,
+                                      cef_log_severity_t level,
+                                      const CefString& message,
+                                      const CefString& source,
+                                      int line) OVERRIDE;
 
         // CefLoadHandler methods
         virtual void OnLoadingStateChange(CefRefPtr<CefBrowser> browser, bool isLoading, bool canGoBack, bool canGoForward) OVERRIDE;
 
-        virtual void OnLoadStart(CefRefPtr<CefBrowser> browser,	CefRefPtr<CefFrame> frame, TransitionType transition_type) OVERRIDE;
+        virtual void OnLoadStart(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame,
+                                 TransitionType transition_type) OVERRIDE;
 
         virtual void OnLoadEnd(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, int httpStatusCode) OVERRIDE;
 
@@ -274,6 +279,7 @@ namespace nim_comp {
         bool OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
                             CefRefPtr<CefFrame> frame,
                             CefRefPtr<CefRequest> request,
+                            bool user_gesture,
                             bool is_redirect) OVERRIDE;
 
         virtual void OnProtocolExecution(CefRefPtr<CefBrowser> browser,
@@ -284,7 +290,7 @@ namespace nim_comp {
             CefRefPtr<CefBrowser> browser,
             CefRefPtr<CefFrame> frame,
             CefRefPtr<CefRequest> request,
-            CefRefPtr<CefRequestCallback> callback) OVERRIDE;
+            CefRefPtr<CefRequestCallback> callback);
 
         bool OnQuotaRequest(CefRefPtr<CefBrowser> browser,
                             const CefString& origin_url,
@@ -314,17 +320,6 @@ namespace nim_comp {
                                   const std::vector<CefString>& accept_filters,
                                   int selected_accept_filter,
                                   CefRefPtr<CefFileDialogCallback> callback) OVERRIDE;
-
-        // CefDragHandler methods
-        bool OnDragEnter(CefRefPtr<CefBrowser> browser,
-                         CefRefPtr<CefDragData> dragData,
-                         CefDragHandler::DragOperationsMask mask) OVERRIDE;
-        /*void OnDraggableRegionsChanged(
-        	CefRefPtr<CefBrowser> browser,
-        	const std::vector<CefDraggableRegion>& regions) OVERRIDE;*/
-
-        // CefFocusHandler methods
-        void OnTakeFocus(CefRefPtr<CefBrowser> browser, bool next) OVERRIDE;
 
       protected:
         CefRefPtr<CefBrowser>	browser_;
