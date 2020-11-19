@@ -34,7 +34,7 @@ class CefCppToCScoped : public CefBaseScoped {
   // }
   static StructName* WrapOwn(CefOwnPtr<BaseName> c) {
     if (!c)
-      return nullptr;
+      return NULL;
 
     // Wrap our object with the CefCppToC class.
     ClassName* wrapper = new ClassName();
@@ -97,7 +97,7 @@ class CefCppToCScoped : public CefBaseScoped {
     // We're giving up ownership of the underlying object. Clear the pointer so
     // it doesn't get deleted.
     BaseName* object = wrapperStruct->object_;
-    wrapperStruct->object_ = nullptr;
+    wrapperStruct->object_ = NULL;
 
     delete wrapperStruct->wrapper_;
 
@@ -114,7 +114,7 @@ class CefCppToCScoped : public CefBaseScoped {
   // }
   static CefRawPtr<BaseName> UnwrapRaw(StructName* s) {
     if (!s)
-      return nullptr;
+      return NULL;
 
     // Cast our structure to the wrapper structure type.
     WrapperStruct* wrapperStruct = GetWrapperStruct(s);

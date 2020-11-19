@@ -256,12 +256,10 @@ ErrnoLogMessage::~ErrnoLogMessage() {
 }  // namespace cef
 
 std::ostream& operator<<(std::ostream& out, const wchar_t* wstr) {
+  cef_string_utf8_t str = {0};
   std::wstring tmp_str(wstr);
-  if (!tmp_str.empty()) {
-    cef_string_utf8_t str = {0};
-    cef_string_wide_to_utf8(wstr, tmp_str.size(), &str);
-    out << str.str;
-    cef_string_utf8_clear(&str);
-  }
+  cef_string_wide_to_utf8(wstr, tmp_str.size(), &str);
+  out << str.str;
+  cef_string_utf8_clear(&str);
   return out;
 }

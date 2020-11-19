@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=ddb09e01a1a6f2e928a2a3c414bef889adb7dc65$
+// $hash=1f9305ea3945990271795caf303c11ae09f662a4$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_FRAME_CTOCPP_H_
@@ -52,6 +52,7 @@ class CefFrameCToCpp
   void GetText(CefRefPtr<CefStringVisitor> visitor) OVERRIDE;
   void LoadRequest(CefRefPtr<CefRequest> request) OVERRIDE;
   void LoadURL(const CefString& url) OVERRIDE;
+  void LoadString(const CefString& string_val, const CefString& url) OVERRIDE;
   void ExecuteJavaScript(const CefString& code,
                          const CefString& script_url,
                          int start_line) OVERRIDE;

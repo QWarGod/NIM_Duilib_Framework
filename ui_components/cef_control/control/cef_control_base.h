@@ -34,7 +34,7 @@ namespace nim_comp {
         * @param[in] url ÍøÖ·
         * @return ÎŞ
         */
-        //void LoadString(const CefString& stringW, const CefString& url);
+        void LoadString(const CefString& stringW, const CefString& url);
 
         /**
         * @brief ºóÍË

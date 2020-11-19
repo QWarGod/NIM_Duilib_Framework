@@ -97,7 +97,7 @@ class CefMessageRouterBrowserSideImpl : public CefMessageRouterBrowserSide {
 
         if (!persistent_) {
           // Non-persistent callbacks are only good for a single use.
-          router_ = nullptr;
+          router_ = NULL;
         }
       }
     }
@@ -118,13 +118,13 @@ class CefMessageRouterBrowserSideImpl : public CefMessageRouterBrowserSide {
                        error_message));
 
         // Failure always invalidates the callback.
-        router_ = nullptr;
+        router_ = NULL;
       }
     }
 
     void Detach() {
       CEF_REQUIRE_UI_THREAD();
-      router_ = nullptr;
+      router_ = NULL;
     }
 
    private:
@@ -161,7 +161,7 @@ class CefMessageRouterBrowserSideImpl : public CefMessageRouterBrowserSide {
   bool RemoveHandler(Handler* handler) OVERRIDE {
     CEF_REQUIRE_UI_THREAD();
     if (handler_set_.erase(handler) > 0) {
-      CancelPendingFor(nullptr, handler, true);
+      CancelPendingFor(NULL, handler, true);
       return true;
     }
     return false;
@@ -222,17 +222,17 @@ class CefMessageRouterBrowserSideImpl : public CefMessageRouterBrowserSide {
   }
 
   void OnBeforeClose(CefRefPtr<CefBrowser> browser) OVERRIDE {
-    CancelPendingFor(browser, nullptr, false);
+    CancelPendingFor(browser, NULL, false);
   }
 
   void OnRenderProcessTerminated(CefRefPtr<CefBrowser> browser) OVERRIDE {
-    CancelPendingFor(browser, nullptr, false);
+    CancelPendingFor(browser, NULL, false);
   }
 
   void OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
                       CefRefPtr<CefFrame> frame) OVERRIDE {
     if (frame->IsMain())
-      CancelPendingFor(browser, nullptr, false);
+      CancelPendingFor(browser, NULL, false);
   }
 
   bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
@@ -616,7 +616,7 @@ class CefMessageRouterRendererSideImpl : public CefMessageRouterRendererSide {
           return true;
         }
 
-        CefRefPtr<CefV8Value> successVal = nullptr;
+        CefRefPtr<CefV8Value> successVal = NULL;
         if (arg->HasValue(kMemberOnSuccess)) {
           successVal = arg->GetValue(kMemberOnSuccess);
           if (!successVal->IsFunction()) {
@@ -627,7 +627,7 @@ class CefMessageRouterRendererSideImpl : public CefMessageRouterRendererSide {
           }
         }
 
-        CefRefPtr<CefV8Value> failureVal = nullptr;
+        CefRefPtr<CefV8Value> failureVal = NULL;
         if (arg->HasValue(kMemberOnFailure)) {
           failureVal = arg->GetValue(kMemberOnFailure);
           if (!failureVal->IsFunction()) {
@@ -638,7 +638,7 @@ class CefMessageRouterRendererSideImpl : public CefMessageRouterRendererSide {
           }
         }
 
-        CefRefPtr<CefV8Value> persistentVal = nullptr;
+        CefRefPtr<CefV8Value> persistentVal = NULL;
         if (arg->HasValue(kMemberPersistent)) {
           persistentVal = arg->GetValue(kMemberPersistent);
           if (!persistentVal->IsBool()) {
@@ -1008,8 +1008,7 @@ class CefMessageRouterRendererSideImpl : public CefMessageRouterRendererSide {
     if (context && info->success_callback) {
       CefV8ValueList args;
       args.push_back(CefV8Value::CreateString(response));
-      info->success_callback->ExecuteFunctionWithContext(context, nullptr,
-                                                         args);
+      info->success_callback->ExecuteFunctionWithContext(context, NULL, args);
     }
 
     if (removed)
@@ -1035,8 +1034,7 @@ class CefMessageRouterRendererSideImpl : public CefMessageRouterRendererSide {
       CefV8ValueList args;
       args.push_back(CefV8Value::CreateInt(error_code));
       args.push_back(CefV8Value::CreateString(error_message));
-      info->failure_callback->ExecuteFunctionWithContext(context, nullptr,
-                                                         args);
+      info->failure_callback->ExecuteFunctionWithContext(context, NULL, args);
     }
 
     DCHECK(removed);
@@ -1078,7 +1076,7 @@ class CefMessageRouterRendererSideImpl : public CefMessageRouterRendererSide {
     ContextMap::const_iterator it = context_map_.find(context_id);
     if (it != context_map_.end())
       return it->second;
-    return nullptr;
+    return NULL;
   }
 
   const CefMessageRouterConfig config_;
@@ -1115,7 +1113,7 @@ CefRefPtr<CefMessageRouterBrowserSide> CefMessageRouterBrowserSide::Create(
     const CefMessageRouterConfig& config) {
   CefMessageRouterConfig validated_config = config;
   if (!ValidateConfig(validated_config))
-    return nullptr;
+    return NULL;
   return new CefMessageRouterBrowserSideImpl(validated_config);
 }
 
@@ -1124,6 +1122,6 @@ CefRefPtr<CefMessageRouterRendererSide> CefMessageRouterRendererSide::Create(
     const CefMessageRouterConfig& config) {
   CefMessageRouterConfig validated_config = config;
   if (!ValidateConfig(validated_config))
-    return nullptr;
+    return NULL;
   return new CefMessageRouterRendererSideImpl(validated_config);
 }

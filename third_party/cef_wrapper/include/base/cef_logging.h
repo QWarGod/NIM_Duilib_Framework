@@ -144,9 +144,9 @@
 
 // Always define the DCHECK_IS_ON macro which is used from other CEF headers.
 #if defined(NDEBUG) && !defined(DCHECK_ALWAYS_ON)
-#define DCHECK_IS_ON() false
+#define DCHECK_IS_ON() 0
 #else
-#define DCHECK_IS_ON() true
+#define DCHECK_IS_ON() 1
 #endif
 
 #elif defined(USING_CHROMIUM_INCLUDES)

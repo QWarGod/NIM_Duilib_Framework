@@ -93,7 +93,7 @@ class CefRenderProcessHandler : public virtual CefBaseRefCounted {
   // Return the handler for browser load status events.
   ///
   /*--cef()--*/
-  virtual CefRefPtr<CefLoadHandler> GetLoadHandler() { return nullptr; }
+  virtual CefRefPtr<CefLoadHandler> GetLoadHandler() { return NULL; }
 
   ///
   // Called immediately after the V8 context for a frame has been created. To

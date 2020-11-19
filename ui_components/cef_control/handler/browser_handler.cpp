@@ -8,13 +8,6 @@
 #include "include/wrapper/cef_helpers.h"
 
 namespace nim_comp {
-    // added_by yingchun.xu 2020-11-05
-    // Custom menu command Ids.
-    enum client_menu_ids {
-        CLIENT_ID_COPY_IMAGE = MENU_ID_USER_FIRST, // ¸´ÖÆ
-        CLIENT_ID_SAVE_IMAGE_AS,                   // Áí´æÎª
-    };
-
     BrowserHandler::BrowserHandler() {
         handle_delegate_ = NULL;
         is_focus_oneditable_field_ = false;
@@ -79,9 +72,9 @@ namespace nim_comp {
             return true;
 
         } else if (message_name == kCallCppFunctionMessage) {
-            CefString fun_name = message->GetArgumentList()->GetString(0);
-            CefString param = message->GetArgumentList()->GetString(1);
-            int js_callback_id = message->GetArgumentList()->GetInt(2);
+            CefString fun_name	= message->GetArgumentList()->GetString(0);
+            CefString param		= message->GetArgumentList()->GetString(1);
+            int js_callback_id	= message->GetArgumentList()->GetInt(2);
 
             if (handle_delegate_)
                 handle_delegate_->OnExecuteCppFunc(fun_name, param, js_callback_id, browser);
@@ -100,7 +93,7 @@ namespace nim_comp {
     }
 
     #pragma region CefLifeSpanHandler
-    // CefLifeSpanHandler methods
+// CefLifeSpanHandler methods
     bool BrowserHandler::OnBeforePopup(CefRefPtr<CefBrowser> browser,
                                        CefRefPtr<CefFrame> frame,
                                        const CefString& target_url,
@@ -190,7 +183,7 @@ namespace nim_comp {
     #pragma endregion
 
     #pragma region CefRenderHandler
-    // CefRenderHandler methods
+// CefRenderHandler methods
     bool BrowserHandler::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect& rect) {
         RECT window_rect = { 0 };
         HWND root_window = GetAncestor(hwnd_, GA_ROOT);
@@ -273,32 +266,17 @@ namespace nim_comp {
     #pragma endregion
 
     #pragma region CefContextMenuHandler
-    // CefContextMenuHandler methods
+// CefContextMenuHandler methods
     void BrowserHandler::OnBeforeContextMenu(CefRefPtr<CefBrowser> browser,
             CefRefPtr<CefFrame> frame,
             CefRefPtr<CefContextMenuParams> params,
             CefRefPtr<CefMenuModel> model) {
         REQUIRE_UI_THREAD();
 
-        // added_by yingchun.xu 2020-11-05
-        // µã»÷Í¼Æ¬µÄÊ±ºò£¬ÏÔÊ¾¸´ÖÆÍ¼Æ¬µÄÓÒ¼ü²Ëµ¥
-        if ((params->GetTypeFlags() & CM_TYPEFLAG_MEDIA) != 0 && (params->GetMediaType() & CM_MEDIATYPE_IMAGE != 0)) {
-            if (model->GetCount() > 0) {
-                // ½ûÖ¹ÓÒ¼ü²Ëµ¥
-                model->Clear();
-            }
-
-            model->InsertItemAt(0, CLIENT_ID_COPY_IMAGE, L"¸´ÖÆÍ¼Æ¬");
-            model->InsertItemAt(1, CLIENT_ID_SAVE_IMAGE_AS, L"Í¼Æ¬Áí´æÎª...");
-            model->InsertSeparatorAt(2);
-            model->AddItem(MENU_ID_PRINT, L"´òÓ¡");
-        }
-
         if (handle_delegate_) {
             handle_delegate_->OnBeforeContextMenu(browser, frame, params, model);
 
         } else {
-
             // Customize the context menu...
             if ((params->GetTypeFlags() & (CM_TYPEFLAG_PAGE | CM_TYPEFLAG_FRAME)) != 0) {
                 if (model->GetCount() > 0) {
@@ -314,14 +292,6 @@ namespace nim_comp {
     }
 
     bool BrowserHandler::OnContextMenuCommand(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefContextMenuParams> params, int command_id, EventFlags event_flags) {
-
-        if (command_id == CLIENT_ID_COPY_IMAGE) {
-            frame->Copy();
-
-        } else if (command_id == CLIENT_ID_SAVE_IMAGE_AS) {
-            frame->GetBrowser().get()->GetHost().get()->StartDownload(frame->GetURL());
-        }
-
         if (handle_delegate_)
             return handle_delegate_->OnContextMenuCommand(browser, frame, params, command_id, event_flags);
 
@@ -337,7 +307,7 @@ namespace nim_comp {
 
     #pragma region CefDisplayHandler
 
-    // CefDisplayHandler methods
+// CefDisplayHandler methods
     void BrowserHandler::OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& url) {
         // Update the URL in the address bar...
         if (handle_delegate_)
@@ -360,7 +330,7 @@ namespace nim_comp {
     }
     #pragma endregion
 
-    // CefLoadHandler methods
+// CefLoadHandler methods
     void BrowserHandler::OnLoadingStateChange(CefRefPtr<CefBrowser> browser, bool isLoading, bool canGoBack, bool canGoForward) {
         // Update UI for browser state...
         if (handle_delegate_)
@@ -400,7 +370,7 @@ namespace nim_comp {
         return false;
     }
 
-    // CefRequestHandler methods
+// CefRequestHandler methods
     bool BrowserHandler::OnBeforeBrowse(CefRefPtr<CefBrowser> browser,
                                         CefRefPtr<CefFrame> frame,
                                         CefRefPtr<CefRequest> request,
