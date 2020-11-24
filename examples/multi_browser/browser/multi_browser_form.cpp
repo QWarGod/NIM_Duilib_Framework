@@ -153,7 +153,6 @@ LRESULT MultiBrowserForm::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
     //    return 0;
     //}
 
-#if 0
     CloseReason closeReason = (CloseReason)wParam;
 
     // 如果是因为所有浏览器盒子都关闭了导致窗口关闭，则正常返回
@@ -193,8 +192,6 @@ LRESULT MultiBrowserForm::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL&
             return 0;
         }
     }
-
-#endif
 
     return __super::OnClose(uMsg, wParam, lParam, bHandled);
 }
