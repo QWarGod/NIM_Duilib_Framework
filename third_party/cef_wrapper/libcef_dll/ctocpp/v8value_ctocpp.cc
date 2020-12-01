@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=d50470b45303a24f4c2589ad8d629f3d273ac23f$
+// $hash=621b70f6047c604a9838143327d30b0eca3b8ee8$
 //
 
 #include "libcef_dll/ctocpp/v8value_ctocpp.h"
@@ -150,11 +150,11 @@ CefRefPtr<CefV8Value> CefV8Value::CreateArrayBuffer(
   // Verify param: buffer; type: simple_byaddr
   DCHECK(buffer);
   if (!buffer)
-    return nullptr;
+    return NULL;
   // Verify param: release_callback; type: refptr_diff
   DCHECK(release_callback.get());
   if (!release_callback.get())
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_v8value_t* _retval = cef_v8value_create_array_buffer(
@@ -174,11 +174,11 @@ CefRefPtr<CefV8Value> CefV8Value::CreateFunction(
   // Verify param: name; type: string_byref_const
   DCHECK(!name.empty());
   if (name.empty())
-    return nullptr;
+    return NULL;
   // Verify param: handler; type: refptr_diff
   DCHECK(handler.get());
   if (!handler.get())
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_v8value_t* _retval = cef_v8value_create_function(
@@ -510,7 +510,7 @@ NO_SANITIZE("cfi-icall")
 CefRefPtr<CefV8Exception> CefV8ValueCToCpp::GetException() {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_exception))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -639,7 +639,7 @@ NO_SANITIZE("cfi-icall")
 CefRefPtr<CefV8Value> CefV8ValueCToCpp::GetValue(const CefString& key) {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_value_bykey))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -656,14 +656,14 @@ NO_SANITIZE("cfi-icall")
 CefRefPtr<CefV8Value> CefV8ValueCToCpp::GetValue(int index) {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_value_byindex))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   // Verify param: index; type: simple_byval
   DCHECK_GE(index, 0);
   if (index < 0)
-    return nullptr;
+    return NULL;
 
   // Execute
   cef_v8value_t* _retval = _struct->get_value_byindex(_struct, index);
@@ -791,7 +791,7 @@ NO_SANITIZE("cfi-icall")
 CefRefPtr<CefBaseRefCounted> CefV8ValueCToCpp::GetUserData() {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_user_data))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -851,7 +851,7 @@ CefRefPtr<CefV8ArrayBufferReleaseCallback>
 CefV8ValueCToCpp::GetArrayBufferReleaseCallback() {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_array_buffer_release_callback))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -897,7 +897,7 @@ NO_SANITIZE("cfi-icall")
 CefRefPtr<CefV8Handler> CefV8ValueCToCpp::GetFunctionHandler() {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_function_handler))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -914,7 +914,7 @@ CefRefPtr<CefV8Value> CefV8ValueCToCpp::ExecuteFunction(
     const CefV8ValueList& arguments) {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, execute_function))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -952,14 +952,14 @@ CefRefPtr<CefV8Value> CefV8ValueCToCpp::ExecuteFunctionWithContext(
     const CefV8ValueList& arguments) {
   cef_v8value_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, execute_function_with_context))
-    return nullptr;
+    return NULL;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
   // Verify param: context; type: refptr_same
   DCHECK(context.get());
   if (!context.get())
-    return nullptr;
+    return NULL;
   // Unverified params: object
 
   // Translate param: arguments; type: refptr_vec_same_byref_const
@@ -1002,7 +1002,7 @@ CefCToCppRefCounted<CefV8ValueCToCpp, CefV8Value, cef_v8value_t>::UnwrapDerived(
     CefWrapperType type,
     CefV8Value* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return nullptr;
+  return NULL;
 }
 
 template <>

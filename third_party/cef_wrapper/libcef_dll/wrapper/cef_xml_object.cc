@@ -158,7 +158,7 @@ class CefXmlObjectLoader {
 }  // namespace
 
 CefXmlObject::CefXmlObject(const CefString& name)
-    : name_(name), parent_(nullptr) {}
+    : name_(name), parent_(NULL) {}
 
 CefXmlObject::~CefXmlObject() {}
 
@@ -245,7 +245,7 @@ bool CefXmlObject::SetName(const CefString& name) {
 
 bool CefXmlObject::HasParent() {
   base::AutoLock lock_scope(lock_);
-  return (parent_ != nullptr);
+  return (parent_ != NULL);
 }
 
 CefRefPtr<CefXmlObject> CefXmlObject::GetParent() {
@@ -385,7 +385,7 @@ bool CefXmlObject::RemoveChild(CefRefPtr<CefXmlObject> child) {
   for (; it != children_.end(); ++it) {
     if ((*it).get() == child.get()) {
       children_.erase(it);
-      child->SetParent(nullptr);
+      child->SetParent(NULL);
       return true;
     }
   }
@@ -402,14 +402,14 @@ void CefXmlObject::ClearChildren() {
   base::AutoLock lock_scope(lock_);
   ObjectVector::iterator it = children_.begin();
   for (; it != children_.end(); ++it)
-    (*it)->SetParent(nullptr);
+    (*it)->SetParent(NULL);
   children_.clear();
 }
 
 CefRefPtr<CefXmlObject> CefXmlObject::FindChild(const CefString& name) {
   DCHECK(!name.empty());
   if (name.empty())
-    return nullptr;
+    return NULL;
 
   base::AutoLock lock_scope(lock_);
   ObjectVector::const_iterator it = children_.begin();
@@ -417,7 +417,7 @@ CefRefPtr<CefXmlObject> CefXmlObject::FindChild(const CefString& name) {
     if ((*it)->GetName() == name)
       return (*it);
   }
-  return nullptr;
+  return NULL;
 }
 
 size_t CefXmlObject::FindChildren(const CefString& name,
@@ -442,10 +442,10 @@ size_t CefXmlObject::FindChildren(const CefString& name,
 void CefXmlObject::SetParent(CefXmlObject* parent) {
   base::AutoLock lock_scope(lock_);
   if (parent) {
-    DCHECK(parent_ == nullptr);
+    DCHECK(parent_ == NULL);
     parent_ = parent;
   } else {
-    DCHECK(parent_ != nullptr);
-    parent_ = nullptr;
+    DCHECK(parent_ != NULL);
+    parent_ = NULL;
   }
 }

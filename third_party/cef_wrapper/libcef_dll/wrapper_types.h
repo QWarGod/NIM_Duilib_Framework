@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=089392d929a9f7a3ca4fe7f53d63b98536505261$
+// $hash=98cdfe3302019e8169a9db0371a64ec7b3ad419b$
 //
 
 #ifndef CEF_LIBCEF_DLL_WRAPPER_TYPES_H_
@@ -21,6 +21,7 @@ enum CefWrapperType {
   WT_BASE_SCOPED,
   WT_ACCESSIBILITY_HANDLER,
   WT_APP,
+  WT_AUDIO_HANDLER,
   WT_AUTH_CALLBACK,
   WT_BEFORE_DOWNLOAD_CALLBACK,
   WT_BINARY_VALUE,
@@ -73,12 +74,6 @@ enum CefWrapperType {
   WT_LIFE_SPAN_HANDLER,
   WT_LIST_VALUE,
   WT_LOAD_HANDLER,
-  WT_MEDIA_OBSERVER,
-  WT_MEDIA_ROUTE,
-  WT_MEDIA_ROUTE_CREATE_CALLBACK,
-  WT_MEDIA_ROUTER,
-  WT_MEDIA_SINK,
-  WT_MEDIA_SOURCE,
   WT_MENU_BUTTON,
   WT_MENU_BUTTON_DELEGATE,
   WT_MENU_BUTTON_PRESSED_LOCK,
@@ -98,7 +93,6 @@ enum CefWrapperType {
   WT_PROCESS_MESSAGE,
   WT_READ_HANDLER,
   WT_REGISTER_CDM_CALLBACK,
-  WT_REGISTRATION,
   WT_RENDER_HANDLER,
   WT_RENDER_PROCESS_HANDLER,
   WT_REQUEST,
