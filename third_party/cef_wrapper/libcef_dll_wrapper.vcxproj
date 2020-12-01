@@ -379,6 +379,7 @@
     <ClInclude Include="include\views\cef_window_delegate.h" />
     <ClInclude Include="include\wrapper\cef_scoped_temp_dir.h" />
     <ClInclude Include="libcef_dll\cpptoc\accessibility_handler_cpptoc.h" />
+    <ClInclude Include="libcef_dll\cpptoc\audio_handler_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\base_ref_counted_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\base_scoped_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\cookie_access_filter_cpptoc.h" />
@@ -386,8 +387,6 @@
     <ClInclude Include="libcef_dll\cpptoc\cpptoc_scoped.h" />
     <ClInclude Include="libcef_dll\cpptoc\download_image_callback_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\extension_handler_cpptoc.h" />
-    <ClInclude Include="libcef_dll\cpptoc\media_observer_cpptoc.h" />
-    <ClInclude Include="libcef_dll\cpptoc\media_route_create_callback_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\menu_model_delegate_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\register_cdm_callback_cpptoc.h" />
     <ClInclude Include="libcef_dll\cpptoc\resource_request_handler_cpptoc.h" />
@@ -410,11 +409,6 @@
     <ClInclude Include="libcef_dll\ctocpp\extension_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\get_extension_resource_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\image_ctocpp.h" />
-    <ClInclude Include="libcef_dll\ctocpp\media_router_ctocpp.h" />
-    <ClInclude Include="libcef_dll\ctocpp\media_route_ctocpp.h" />
-    <ClInclude Include="libcef_dll\ctocpp\media_sink_ctocpp.h" />
-    <ClInclude Include="libcef_dll\ctocpp\media_source_ctocpp.h" />
-    <ClInclude Include="libcef_dll\ctocpp\registration_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\resource_read_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\resource_skip_callback_ctocpp.h" />
     <ClInclude Include="libcef_dll\ctocpp\select_client_certificate_callback_ctocpp.h" />
@@ -719,13 +713,12 @@
     <ClInclude Include="include\wrapper\cef_zip_archive.h" />
     <ClInclude Include="libcef_dll\wrapper\cef_browser_info_map.h" />
     <ClCompile Include="libcef_dll\cpptoc\accessibility_handler_cpptoc.cc" />
+    <ClCompile Include="libcef_dll\cpptoc\audio_handler_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\base_ref_counted_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\base_scoped_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\cookie_access_filter_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\download_image_callback_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\extension_handler_cpptoc.cc" />
-    <ClCompile Include="libcef_dll\cpptoc\media_observer_cpptoc.cc" />
-    <ClCompile Include="libcef_dll\cpptoc\media_route_create_callback_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\menu_model_delegate_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\register_cdm_callback_cpptoc.cc" />
     <ClCompile Include="libcef_dll\cpptoc\resource_request_handler_cpptoc.cc" />
@@ -746,11 +739,6 @@
     <ClCompile Include="libcef_dll\ctocpp\extension_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\get_extension_resource_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\image_ctocpp.cc" />
-    <ClCompile Include="libcef_dll\ctocpp\media_router_ctocpp.cc" />
-    <ClCompile Include="libcef_dll\ctocpp\media_route_ctocpp.cc" />
-    <ClCompile Include="libcef_dll\ctocpp\media_sink_ctocpp.cc" />
-    <ClCompile Include="libcef_dll\ctocpp\media_source_ctocpp.cc" />
-    <ClCompile Include="libcef_dll\ctocpp\registration_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\resource_read_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\resource_skip_callback_ctocpp.cc" />
     <ClCompile Include="libcef_dll\ctocpp\select_client_certificate_callback_ctocpp.cc" />
