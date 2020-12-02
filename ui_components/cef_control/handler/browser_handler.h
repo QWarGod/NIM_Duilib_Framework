@@ -10,6 +10,8 @@
 #include "cef_control/util/auto_unregister.h"
 #include "cef_control/app/cef_js_bridge.h"
 
+//#include "base/ZLogger.h"
+
 namespace nim_comp {
     // BrowserHandler implements CefClient and a number of other interfaces.
     class BrowserHandler :
@@ -28,6 +30,10 @@ namespace nim_comp {
         public CefDialogHandler {
       public:
         BrowserHandler();
+
+        ~BrowserHandler() {
+            //LogInfo("-------------------yes, dispose");
+        }
 
         /** @class HandlerDelegate
          * @brief BrowserHandler的消息委托类接口，BrowserHandler类会处理多数Cef浏览器对象的事件
@@ -161,6 +167,10 @@ namespace nim_comp {
         }
 
         CefRefPtr<CefBrowserHost> GetBrowserHost();
+
+        /*int GetRefCout() {
+            return ref_count_.GetRefCount();
+        }*/
 
         // 添加一个任务到队列中，当Browser对象创建成功后，会依次触发任务
         // 比如创建Browser后调用LoadUrl加载网页，但是这时Browser很可能还没有创建成功，就把LoadUrl任务添加到队列

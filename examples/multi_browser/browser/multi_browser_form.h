@@ -301,5 +301,4 @@ class MultiBrowserForm : public nim_comp::ShadowWndBase, public IDropTarget, pub
 
     // 任务栏缩略图管理器
     TaskbarManager		taskbar_manager_;
-    bool is_close_browser_box_;
 };

@@ -21,7 +21,7 @@ class BrowserBox : public ui::VBox {
     * @param[in] id	浏览器盒子的唯一标识，用于区分不同的标签页
     */
     BrowserBox(std::string id);
-    ~BrowserBox() { };
+    ~BrowserBox();
 
     /**
     * 获取id

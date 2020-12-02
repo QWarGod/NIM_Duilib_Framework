@@ -4,6 +4,8 @@
 #include "control/browser_tab_item.h"
 #include "custom_layout.h"
 
+//#include "base/ZLogger.h"
+
 using namespace ui;
 using namespace std;
 using namespace nim_comp;
@@ -21,7 +23,7 @@ namespace {
 
 const LPCTSTR MultiBrowserForm::kClassName = L"MultiBrowserForm";
 
-MultiBrowserForm::MultiBrowserForm(): is_close_browser_box_(false) {
+MultiBrowserForm::MultiBrowserForm() {
     btn_max_restore_ = nullptr;
 
     drop_helper_ = NULL;
@@ -76,6 +78,8 @@ void MultiBrowserForm::InitWindow() {
     tab_list_->AttachSelect(nbase::Bind(&MultiBrowserForm::OnTabItemSelected, this, std::placeholders::_1));
 
     InitDragDrop();
+
+    //LogInfo("hwnd={}", (int)GetHWND());
 }
 
 LRESULT MultiBrowserForm::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) {
@@ -137,13 +141,6 @@ LRESULT MultiBrowserForm::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 LRESULT MultiBrowserForm::OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled) {
-    // 是关闭browser触发的OnClose，忽略
-    if (is_close_browser_box_) {
-        is_close_browser_box_ = false;
-        bHandled = TRUE;
-        return 0;
-    }
-
     // CefManager::GetInstance()->Initialize(nbase::win32::GetCurrentModuleDirectory() + L"cef_temp\\", settings, kEnableOffsetRender)
     // 当 kEnableOffsetRender = true时，关闭1个页面会触发OnClose回调，这里要处理一下。只有在通过托盘图标点击退出时，才关闭界面。
     //if (!is_closed_) {
@@ -236,12 +233,13 @@ bool MultiBrowserForm::OnClicked( ui::EventArgs* arg ) {
             ::ShowWindow(GetHWND(), SW_MAXIMIZE);
 
     } else if (name == L"btn_close") {
-        if (NULL == active_browser_box_) {
-            ASSERT(0);
-            return true;
-        }
+        //if (NULL == active_browser_box_) {
+        //    ASSERT(0);
+        //    return true;
+        //}
 
-        CloseBox(active_browser_box_->GetId());
+        //CloseBox(active_browser_box_->GetId());
+        this->Close(kBrowserBoxClose);
 
     } else if (name == L"btn_min") {
         SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
@@ -607,8 +605,6 @@ bool MultiBrowserForm::OnTabItemSelected(ui::EventArgs* param) {
 }
 
 bool MultiBrowserForm::OnTabItemClose(ui::EventArgs* param, const std::string& browser_id) {
-    is_close_browser_box_ = true;
-
 
     if (param->pSender->GetName() == L"tab_item_close") {
         CloseBox(browser_id);
