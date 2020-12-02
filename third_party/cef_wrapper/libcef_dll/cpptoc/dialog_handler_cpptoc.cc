@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=76ce77c2503ece27838b7b83d3e5644d76a48a2d$
+// $hash=67f9af743f81c6fa7e4f1cdf7e626115fc83333f$
 //
 
 #include "libcef_dll/cpptoc/dialog_handler_cpptoc.h"
@@ -87,7 +87,7 @@ CefRefPtr<CefDialogHandler> CefCppToCRefCounted<
     cef_dialog_handler_t>::UnwrapDerived(CefWrapperType type,
                                          cef_dialog_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

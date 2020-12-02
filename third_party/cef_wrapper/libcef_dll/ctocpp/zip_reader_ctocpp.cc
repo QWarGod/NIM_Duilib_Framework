@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=ce6e43f2c38373f4b46ed57bdfb7d81f84261206$
+// $hash=078dbecccef4097257adf7962e33168411375928$
 //
 
 #include "libcef_dll/ctocpp/zip_reader_ctocpp.h"
@@ -28,7 +28,7 @@ CefRefPtr<CefZipReader> CefZipReader::Create(
   // Verify param: stream; type: refptr_same
   DCHECK(stream.get());
   if (!stream.get())
-    return NULL;
+    return nullptr;
 
   // Execute
   cef_zip_reader_t* _retval =
@@ -266,7 +266,7 @@ cef_zip_reader_t*
 CefCToCppRefCounted<CefZipReaderCToCpp, CefZipReader, cef_zip_reader_t>::
     UnwrapDerived(CefWrapperType type, CefZipReader* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

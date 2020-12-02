@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=43d586b5f868ea7e08eb7ba1297f50649e418a1d$
+// $hash=2303bd78ed1cf87d4093a46ff6b0830e0f7e5090$
 //
 
 #include "libcef_dll/cpptoc/scheme_handler_factory_cpptoc.h"
@@ -73,7 +73,7 @@ CefRefPtr<CefSchemeHandlerFactory> CefCppToCRefCounted<
                                                  cef_scheme_handler_factory_t*
                                                      s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

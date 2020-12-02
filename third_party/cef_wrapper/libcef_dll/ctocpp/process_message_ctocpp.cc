@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=d048a58af52b66863c3081e63dd2e0f8b615d35a$
+// $hash=74d0487f35e81f0d220f947f0b203b04b193929f$
 //
 
 #include "libcef_dll/ctocpp/process_message_ctocpp.h"
@@ -27,7 +27,7 @@ CefRefPtr<CefProcessMessage> CefProcessMessage::Create(const CefString& name) {
   // Verify param: name; type: string_byref_const
   DCHECK(!name.empty());
   if (name.empty())
-    return NULL;
+    return nullptr;
 
   // Execute
   cef_process_message_t* _retval = cef_process_message_create(name.GetStruct());
@@ -76,7 +76,7 @@ CefRefPtr<CefProcessMessage> CefProcessMessageCToCpp::Copy() {
 
   cef_process_message_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, copy))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -111,7 +111,7 @@ CefRefPtr<CefListValue> CefProcessMessageCToCpp::GetArgumentList() {
 
   cef_process_message_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_argument_list))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -139,7 +139,7 @@ cef_process_message_t* CefCToCppRefCounted<
     cef_process_message_t>::UnwrapDerived(CefWrapperType type,
                                           CefProcessMessage* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

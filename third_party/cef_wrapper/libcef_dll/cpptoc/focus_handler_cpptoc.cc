@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=22e8a4be47b39f319f40eabc5f4cafccb7fd1e1a$
+// $hash=f506b931a2f5de1d742319863e8d12e7f097d945$
 //
 
 #include "libcef_dll/cpptoc/focus_handler_cpptoc.h"
@@ -104,7 +104,7 @@ CefRefPtr<CefFocusHandler> CefCppToCRefCounted<
     cef_focus_handler_t>::UnwrapDerived(CefWrapperType type,
                                         cef_focus_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

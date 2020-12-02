@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=9c1c7a83aab83ba8cdb751db09373aaa49601ded$
+// $hash=0eb91a630975532db7316d0452b43190f01a2a8c$
 //
 
 #include "libcef_dll/cpptoc/drag_handler_cpptoc.h"
@@ -112,7 +112,7 @@ CefRefPtr<CefDragHandler>
 CefCppToCRefCounted<CefDragHandlerCppToC, CefDragHandler, cef_drag_handler_t>::
     UnwrapDerived(CefWrapperType type, cef_drag_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

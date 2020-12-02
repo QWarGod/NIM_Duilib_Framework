@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=9afe6821e0c7e4bca936ad8fb1f4d9b21b2b6355$
+// $hash=094143a0f6278a87c471719eff0ce99adb7dfca4$
 //
 
 #include "libcef_dll/cpptoc/string_visitor_cpptoc.h"
@@ -55,7 +55,7 @@ CefRefPtr<CefStringVisitor> CefCppToCRefCounted<
     cef_string_visitor_t>::UnwrapDerived(CefWrapperType type,
                                          cef_string_visitor_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=0ef417f4e0cc3ebf4fcd9c6b73bd74229dd3ac14$
+// $hash=4ec6b7d3ac59768907b1096d463f76a6caa45c1e$
 //
 
 #include "libcef_dll/cpptoc/register_cdm_callback_cpptoc.h"
@@ -60,7 +60,7 @@ CefRefPtr<CefRegisterCdmCallback> CefCppToCRefCounted<
                                                 cef_register_cdm_callback_t*
                                                     s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

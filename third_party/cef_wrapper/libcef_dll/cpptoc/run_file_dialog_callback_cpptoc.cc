@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=2b3612392d91efff2e607d5dd2eb47de3b611de8$
+// $hash=d2364091da1298fe5b7d1e168cc21016128660bf$
 //
 
 #include "libcef_dll/cpptoc/run_file_dialog_callback_cpptoc.h"
@@ -68,7 +68,7 @@ CefCppToCRefCounted<CefRunFileDialogCallbackCppToC,
                     cef_run_file_dialog_callback_t>::
     UnwrapDerived(CefWrapperType type, cef_run_file_dialog_callback_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

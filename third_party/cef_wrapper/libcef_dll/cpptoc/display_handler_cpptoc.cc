@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=0668a14276f9304b318a8048860e4d4427816402$
+// $hash=1e329026cfad131337e794e5501367604f62fdb6$
 //
 
 #include "libcef_dll/cpptoc/display_handler_cpptoc.h"
@@ -283,7 +283,7 @@ CefRefPtr<CefDisplayHandler> CefCppToCRefCounted<
     cef_display_handler_t>::UnwrapDerived(CefWrapperType type,
                                           cef_display_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>
