@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=fbc3efaa29609b91183f04597fbe4366da14a3c3$
+// $hash=5c2d33803cefd442d3995d06f2fb0e8adc26aa4d$
 //
 
 #include "libcef_dll/cpptoc/views/textfield_delegate_cpptoc.h"
@@ -300,7 +300,7 @@ CefRefPtr<CefTextfieldDelegate> CefCppToCRefCounted<
     cef_textfield_delegate_t>::UnwrapDerived(CefWrapperType type,
                                              cef_textfield_delegate_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

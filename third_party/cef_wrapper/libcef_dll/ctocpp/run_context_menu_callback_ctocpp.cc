@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=db9e1aa05b67bbc704bac6cf2d37122a5ec1d94f$
+// $hash=2f1eac0f40c023b5257161efd4b4b1911f1ab8b6$
 //
 
 #include "libcef_dll/ctocpp/run_context_menu_callback_ctocpp.h"
@@ -63,7 +63,7 @@ cef_run_context_menu_callback_t* CefCToCppRefCounted<
                                                     CefRunContextMenuCallback*
                                                         c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

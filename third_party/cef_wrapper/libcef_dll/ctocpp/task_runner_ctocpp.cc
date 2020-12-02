@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=1a131c57d2764e6ce0004585e3401c53c4342386$
+// $hash=3d4ea30711c0e3c716585f14b4122cdd57eba499$
 //
 
 #include "libcef_dll/ctocpp/task_runner_ctocpp.h"
@@ -162,7 +162,7 @@ cef_task_runner_t*
 CefCToCppRefCounted<CefTaskRunnerCToCpp, CefTaskRunner, cef_task_runner_t>::
     UnwrapDerived(CefWrapperType type, CefTaskRunner* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

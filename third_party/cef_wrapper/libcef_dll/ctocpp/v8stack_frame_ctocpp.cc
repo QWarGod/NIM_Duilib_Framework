@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=793eb79238372d2070e4e60673dbf65346999b31$
+// $hash=251396f9d749a62b14644a314fbeb5e31505420d$
 //
 
 #include "libcef_dll/ctocpp/v8stack_frame_ctocpp.h"
@@ -151,7 +151,7 @@ CefCToCppRefCounted<CefV8StackFrameCToCpp,
                     cef_v8stack_frame_t>::UnwrapDerived(CefWrapperType type,
                                                         CefV8StackFrame* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>
