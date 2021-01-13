@@ -90,7 +90,7 @@ LRESULT MultiBrowserForm::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
         else if (wParam == SIZE_MAXIMIZED)
             OnWndSizeMax(true);
 
-    } else if (uMsg == WM_NCCALCSIZE) { // fixed by xmcy0011@sina.com win7下最大化最小化时，libcef3网页无法直接滚动鼠标
+    } else if (uMsg == WM_SETFOCUS) { // fixed by xmcy0011@sina.com win7下最大化最小化时，libcef3网页无法直接滚动鼠标
         if (active_browser_box_ != nullptr && active_browser_box_->GetCefControl() != nullptr) {
             ui::EventArgs e;
             e.Type = kEventInternalSetFocus;
