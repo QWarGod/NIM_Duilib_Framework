@@ -90,6 +90,18 @@ LRESULT MultiBrowserForm::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
         else if (wParam == SIZE_MAXIMIZED)
             OnWndSizeMax(true);
 
+    } else if (uMsg == WM_SETFOCUS) { // fixed by xmcy0011@sina.com win7下最大化最小化时，libcef3网页无法直接滚动鼠标
+        if (active_browser_box_ != nullptr && active_browser_box_->GetCefControl() != nullptr) {
+            ui::EventArgs e;
+            e.Type = kEventInternalSetFocus;
+
+            auto ctrl = dynamic_cast<CefNativeControl*>(active_browser_box_->GetCefControl());
+
+            if (ctrl != nullptr) {
+                ctrl->HandleMessage(e);
+            }
+        }
+
     } else if (uMsg == WM_KEYDOWN) {
         // 处理Ctrl+Tab快捷键
         if (wParam == VK_TAB && ::GetKeyState(VK_CONTROL) < 0) {
