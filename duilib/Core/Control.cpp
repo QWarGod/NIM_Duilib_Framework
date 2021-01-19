@@ -121,6 +121,16 @@ void Control::SetBkColor(const std::wstring& strColor)
 	Invalidate();
 }
 
+void Control::SetBkColor1(const std::wstring& strColor)
+{
+	ASSERT(strColor.empty() || GlobalManager::GetTextColor(strColor) != 0);
+
+	if (m_strBkColor1 == strColor) return;
+
+	m_strBkColor1 = strColor;
+	Invalidate();
+}
+
 std::wstring Control::GetStateColor(ControlStateType stateType)
 {
 	return m_colorMap[stateType];
@@ -980,11 +990,18 @@ void Control::SetAttribute(const std::wstring& strName, const std::wstring& strV
         rcMargin.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
         SetMargin(rcMargin);
     }
-    else if( strName == _T("bkcolor") || strName == _T("bkcolor1") ) {
+    else if( strName == _T("bkcolor") ) {
 		LPCTSTR pValue = strValue.c_str();
         while( *pValue > _T('\0') && *pValue <= _T(' ') ) pValue = ::CharNext(pValue);
         SetBkColor(pValue);
     }
+	else if ( strName == _T("bkcolor1") ) {
+		LPCTSTR pValue = strValue.c_str();
+
+		while (*pValue > _T('\0') && *pValue <= _T(' ')) pValue = ::CharNext(pValue);
+
+		SetBkColor1(pValue);
+	}
 	else if (strName == _T("bordersize")) {
 		std::wstring nValue = strValue;
 		if (nValue.find(',') == std::wstring::npos) {
@@ -1390,10 +1407,20 @@ void Control::PaintBkColor(IRenderContext* pRender)
 		return;
 	}
 
-	DWORD dwBackColor = GlobalManager::GetTextColor(m_strBkColor);
-	if(dwBackColor != 0) {
-		if (dwBackColor >= 0xFF000000) pRender->DrawColor(m_rcPaint, dwBackColor);
-		else pRender->DrawColor(m_rcItem, dwBackColor);
+	if (m_strBkColor1.empty()) {
+		DWORD dwBackColor = GlobalManager::GetTextColor(m_strBkColor);
+
+		if (dwBackColor != 0) {
+			if (dwBackColor >= 0xFF000000) pRender->DrawColor(m_rcPaint, dwBackColor);
+			else pRender->DrawColor(m_rcItem, dwBackColor);
+		}
+	} else {
+		DWORD dwBackColor1 = GlobalManager::GetTextColor(m_strBkColor);
+		DWORD dwBackColor2 = GlobalManager::GetTextColor(m_strBkColor1);
+
+		if (dwBackColor1 != 0 && dwBackColor2 != 0) {
+			pRender->DrawColor(m_rcPaint, dwBackColor1, dwBackColor2);
+		}
 	}
 }
 

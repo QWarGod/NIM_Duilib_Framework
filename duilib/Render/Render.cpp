@@ -432,6 +432,40 @@ void RenderContext_GdiPlus::DrawColor(const UiRect& rc, DWORD dwColor, BYTE uFad
 	graphics.FillRectangle(&brush, rcFill);
 }
 
+void RenderContext_GdiPlus::DrawColor(const UiRect& rc, DWORD dwColor1, DWORD dwColor2, BYTE uFade) {
+	DWORD dwNewColor = dwColor1;
+
+	if (uFade < 255) {
+		int alpha = dwColor1 >> 24;
+		dwNewColor = dwColor1 % 0xffffff;
+		alpha *= double(uFade) / 255;
+		dwNewColor += alpha << 24;
+	}
+
+	Gdiplus::Color color1(dwNewColor);
+
+	dwNewColor = dwColor2;
+
+	if (uFade < 255) {
+		int alpha = dwColor2 >> 24;
+		dwNewColor = dwColor2 % 0xffffff;
+		alpha *= double(uFade) / 255;
+		dwNewColor += alpha << 24;
+	}
+
+	Gdiplus::Color color2(dwColor2);
+
+	Gdiplus::Graphics graphics(m_hDC);
+	// 线性渐变刷子
+	Gdiplus::LinearGradientBrush linGrBrush(Gdiplus::Rect(rc.left, rc.top, rc.GetWidth(), rc.GetHeight()),   //   绘制区域
+		color1, //   第一种颜色
+		color2, //   第二种颜色
+		90);   	//   渐变色的角度
+
+	Gdiplus::RectF rcFill(rc.left, rc.top, rc.GetWidth(), rc.GetHeight());
+	graphics.FillRectangle(&linGrBrush, rcFill);
+}
+
 void RenderContext_GdiPlus::DrawColor(const UiRect& rc, const std::wstring& colorStr, BYTE uFade)
 {
 	if (colorStr.empty()) {

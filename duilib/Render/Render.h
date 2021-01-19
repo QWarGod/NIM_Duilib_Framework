@@ -45,6 +45,7 @@ public:
 		const UiRect& rcImageDest, const UiRect& rcImageSource, const UiRect& rcCorners, BYTE uFade = 255, bool xtiled = false, bool ytiled = false) override;
 
 	virtual void DrawColor(const UiRect& rc, DWORD dwColor, BYTE uFade = 255) override;
+	virtual void DrawColor(const UiRect& rc, DWORD dwColor1, DWORD dwColor2, BYTE uFade = 255) override;
 	virtual void DrawColor(const UiRect& rc, const std::wstring& colorStr, BYTE uFade = 255) override;
 
 	virtual void DrawLine(const UiRect& rc, int nSize, DWORD dwPenColor) override;
