@@ -8,6 +8,7 @@ NIM Duilib 包含了一整套桌面软件的开发部件，与其说这是一个
 3. 解决了multi_browser内存泄漏的问题（关闭1个tab，内存不释放，特别是如果这个tab里面包含视频的话，还会在后台播放😂）  
 4. 解决了win7下最大最小化窗口，网页中还需要再点击一次才能滚动鼠标的问题  
 5. 修正设置Control控件的bkcolor1，背景不渐变的问题
+6. 增加教程说明：[解决网易开源duilib自带RichEdit在部分系统下键盘无法输入的问题](https://blog.csdn.net/xmcy001122/article/details/113343899)
 
 ![GitHub](https://img.shields.io/badge/license-MIT-green.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/u29yl0j7pasopm3h?svg=true)](https://ci.appveyor.com/project/nmgwddj/nim-duilib-framework)
