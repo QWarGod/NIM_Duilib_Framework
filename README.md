@@ -9,6 +9,7 @@ NIM Duilib 包含了一整套桌面软件的开发部件，与其说这是一个
 4. 解决了win7下最大最小化窗口，网页中还需要再点击一次才能滚动鼠标的问题  
 5. 修正设置Control控件的bkcolor1，背景不渐变的问题
 6. 增加教程说明：[解决网易开源duilib自带RichEdit在部分系统下键盘无法输入的问题](https://blog.csdn.net/xmcy001122/article/details/113343899)
+7. 使用md/mdd运行时
 
 ![GitHub](https://img.shields.io/badge/license-MIT-green.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/u29yl0j7pasopm3h?svg=true)](https://ci.appveyor.com/project/nmgwddj/nim-duilib-framework)
