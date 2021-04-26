@@ -212,6 +212,8 @@ public:
 	virtual void FillEllipse(const UiRect& rc, DWORD dwColor) = 0;
 
 	virtual UiRect MeasureText(const std::wstring& strText, const std::wstring& strFontId, UINT uStyle, int width = DUI_NOSET_VALUE) = 0;
+	// added_by xmcy0011@sina.com 同时测量宽度和高度
+    virtual UiRect MeasureTextEx(const std::wstring& strText, const std::wstring& strFontId, UINT uStyle, int width = DUI_NOSET_VALUE) = 0;
 
 	virtual void DrawPath(const IPath* path, const IPen* pen) = 0;
 	virtual void FillPath(const IPath* path, const IBrush* brush) = 0;
