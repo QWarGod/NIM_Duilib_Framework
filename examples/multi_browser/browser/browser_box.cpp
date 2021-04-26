@@ -3,6 +3,8 @@
 #include "browser/multi_browser_manager.h"
 #include "taskbar/taskbar_manager.h"
 
+//#include "base/ZLogger.h"
+
 using namespace ui;
 using namespace std;
 
@@ -11,6 +13,10 @@ BrowserBox::BrowserBox(std::string id) {
     browser_form_ = nullptr;
     cef_control_ = nullptr;
     browser_id_ = id;
+}
+
+BrowserBox::~BrowserBox() {
+    //LogInfo("dispose");
 }
 
 MultiBrowserForm* BrowserBox::GetBrowserForm() const {

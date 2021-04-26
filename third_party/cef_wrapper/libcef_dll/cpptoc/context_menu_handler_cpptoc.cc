@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=b840f4ff3504ccc605d74312fc0ad124dfa3abd6$
+// $hash=9616dc7c84524da3f8549ce399bff1ff4c624ebc$
 //
 
 #include "libcef_dll/cpptoc/context_menu_handler_cpptoc.h"
@@ -194,7 +194,7 @@ CefRefPtr<CefContextMenuHandler> CefCppToCRefCounted<
     cef_context_menu_handler_t>::UnwrapDerived(CefWrapperType type,
                                                cef_context_menu_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

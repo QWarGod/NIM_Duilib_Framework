@@ -13,10 +13,22 @@ namespace nim_comp {
 
     CefNativeControl::~CefNativeControl(void) {
         if (browser_handler_.get() && browser_handler_->GetBrowser().get()) {
+            auto hwnd = GetCefHandle();
+            DWORD dwStyle = GetWindowLong(hwnd, GWL_STYLE);
+
+            // 因为ReCreateBrowser中使用了SetAsChild，而Browser又是根据接收WM_CLOSE消息来关闭释放的
+            // 所以这里退出前，需要更改一下父窗口，否则会造成内存泄漏或者只有整个MultiBrowserForm退出时才释放内存。
+            if (dwStyle & WS_CHILD)
+                ::SetParent(hwnd, GetDesktopWindow());
+
             // Request that the main browser close.
+
             browser_handler_->GetBrowserHost()->CloseBrowser(true);
             browser_handler_->SetHostWindow(NULL);
             browser_handler_->SetHandlerDelegate(NULL);
+
+            //LogInfo("dispose,browser_handle ref_count={},hwnd={},parentHwnd={}", browser_handler_->GetRefCout(), (int)hwnd, (int)this->m_pWindow->GetHWND());
+            browser_handler_ = nullptr;
         }
     }
 
@@ -45,8 +57,12 @@ namespace nim_comp {
             CefWindowInfo window_info;
             window_info.SetAsChild(this->m_pWindow->GetHWND(), m_rcItem);
 
+            //LogInfo("before, ref_count={}", browser_handler_->GetRefCout());
+
             CefBrowserSettings browser_settings;
             CefBrowserHost::CreateBrowser(window_info, browser_handler_, L"", browser_settings, nullptr, nullptr);
+
+            //LogInfo("after, ref_count={}", browser_handler_->GetRefCout());
         }
     }
 

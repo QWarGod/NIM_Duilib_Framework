@@ -152,6 +152,8 @@
     <Class name="splitline_ver_level1" bkcolor="splitline_level1" width="1"/>
 
     <!--富文本控件通用样式-->
+    <!-- 如果richedit键盘无法输入，请去掉wanttab="false"，然后需要自行处理tab换行，参考我的文章：https://blog.csdn.net/xmcy001122/article/details/113343899 -->
+    <!-- <Class name="simple" multiline="false" autohscroll="true" wantreturnmsg="true" rich="false" normaltextcolor="darkcolor" disabledtextcolor="textdefaultdisablecolor"/> -->
     <Class name="simple" multiline="false" autohscroll="true" wantreturnmsg="true" wanttab="false" rich="false" normaltextcolor="darkcolor" disabledtextcolor="textdefaultdisablecolor"/>
     <Class name="prompt" promptmode="true" promptcolor="light_gray"/>
     <Class name="edit" hotimage="file='../public/edit/edit1.png' corner='10,10,10,10'" focusedimage="file='../public/edit/edit2.png' corner='10,10,10,10'"/>

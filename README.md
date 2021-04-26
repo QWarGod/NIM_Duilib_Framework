@@ -3,9 +3,14 @@
 NIM Duilib 包含了一整套桌面软件的开发部件，与其说这是一个界面库，不如说它是一个开发框架。从原有 Duilib 基础上拓展了一些新的能力，并整合了 Google base 基础类库（线程、内存、闭包等）。您完全可以直接使用这个框架来开发任何你想要的桌面应用。
 
 修改说明：
-> 本分支对cef进行了升级，目前是libcef [chromium80,3987版本](http://opensource.spotify.com/cefbuilds/index.html)
-> 并且添加了mp4的支持，可以在www.html5test.com验证，使用别人编译的库：https://download.csdn.net/download/ldmlrx/12285397
-> 修复了RichEdit同时设置Width和Height为Auto时无法计算高度的问题（此时必须设置MaxWidth）
+1. 本分支对cef进行了升级，目前是libcef [chromium80,3987版本](http://opensource.spotify.com/cefbuilds/index.html)  
+2. 并且添加了mp4的支持，可以在www.html5test.com验证，使用别人编译的库：https://download.csdn.net/download/ldmlrx/12285397  
+3. 解决了multi_browser内存泄漏的问题（关闭1个tab，内存不释放，特别是如果这个tab里面包含视频的话，还会在后台播放😂）  
+4. 解决了win7下最大最小化窗口，网页中还需要再点击一次才能滚动鼠标的问题  
+5. 修正设置Control控件的bkcolor1，背景不渐变的问题
+6. 增加教程说明：[解决网易开源duilib自带RichEdit在部分系统下键盘无法输入的问题](https://blog.csdn.net/xmcy001122/article/details/113343899)
+7. 使用md/mdd运行时
+8. 修复了RichEdit同时设置Width和Height为Auto时无法计算高度的问题（此时必须设置MaxWidth）
 
 ![GitHub](https://img.shields.io/badge/license-MIT-green.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/u29yl0j7pasopm3h?svg=true)](https://ci.appveyor.com/project/nmgwddj/nim-duilib-framework)

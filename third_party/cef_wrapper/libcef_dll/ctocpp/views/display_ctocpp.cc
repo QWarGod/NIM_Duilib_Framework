@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=416b4a4468d0c9f68ab9f470b8d384716bd94cbc$
+// $hash=50521680b4ef13badbac42fa1a5e28d5ddf46194$
 //
 
 #include "libcef_dll/ctocpp/views/display_ctocpp.h"
@@ -236,7 +236,7 @@ CefCToCppRefCounted<CefDisplayCToCpp, CefDisplay, cef_display_t>::UnwrapDerived(
     CefWrapperType type,
     CefDisplay* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

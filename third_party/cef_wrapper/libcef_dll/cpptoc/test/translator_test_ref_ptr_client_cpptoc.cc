@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=69b6f21feb14c9cf90189bdd12ec0a6d7304ff2d$
+// $hash=83b45b70a01ab7ae99b015e0017446f623e484b6$
 //
 
 #include "libcef_dll/cpptoc/test/translator_test_ref_ptr_client_cpptoc.h"
@@ -63,7 +63,7 @@ CefCppToCRefCounted<CefTranslatorTestRefPtrClientCppToC,
         reinterpret_cast<cef_translator_test_ref_ptr_client_child_t*>(s));
   }
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

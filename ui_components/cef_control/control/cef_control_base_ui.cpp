@@ -44,7 +44,7 @@ namespace nim_comp {
             if (!frame)
                 return;
 
-            frame->LoadStringW(stringW, url);
+            //frame->LoadStringW(stringW, url);
 
         } else {
             if (browser_handler_.get()) {

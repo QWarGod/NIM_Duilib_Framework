@@ -472,9 +472,6 @@
     <ClCompile Include="libcef_dll\ctocpp\test\translator_test_scoped_library_ctocpp.cc">
       <Filter>libcef_dll\ctocpp\test</Filter>
     </ClCompile>
-    <ClCompile Include="libcef_dll\cpptoc\audio_handler_cpptoc.cc">
-      <Filter>libcef_dll\cpptoc</Filter>
-    </ClCompile>
     <ClCompile Include="libcef_dll\cpptoc\cookie_access_filter_cpptoc.cc">
       <Filter>libcef_dll\cpptoc</Filter>
     </ClCompile>
@@ -510,6 +507,27 @@
     </ClCompile>
     <ClCompile Include="libcef_dll\shutdown_checker.cc">
       <Filter>libcef_dll</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\media_observer_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\cpptoc\media_route_create_callback_cpptoc.cc">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\media_route_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\media_router_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\media_sink_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\media_source_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClCompile>
+    <ClCompile Include="libcef_dll\ctocpp\registration_ctocpp.cc">
+      <Filter>libcef_dll\ctocpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1593,9 +1611,6 @@
     <ClInclude Include="libcef_dll\ctocpp\test\translator_test_scoped_library_ctocpp.h">
       <Filter>libcef_dll\ctocpp\test</Filter>
     </ClInclude>
-    <ClInclude Include="libcef_dll\cpptoc\audio_handler_cpptoc.h">
-      <Filter>libcef_dll\cpptoc</Filter>
-    </ClInclude>
     <ClInclude Include="libcef_dll\cpptoc\cookie_access_filter_cpptoc.h">
       <Filter>libcef_dll\cpptoc</Filter>
     </ClInclude>
@@ -1631,6 +1646,27 @@
     </ClInclude>
     <ClInclude Include="libcef_dll\shutdown_checker.h">
       <Filter>libcef_dll</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\media_observer_cpptoc.h">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\cpptoc\media_route_create_callback_cpptoc.h">
+      <Filter>libcef_dll\cpptoc</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\media_route_ctocpp.h">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\media_router_ctocpp.h">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\media_sink_ctocpp.h">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\media_source_ctocpp.h">
+      <Filter>libcef_dll\ctocpp</Filter>
+    </ClInclude>
+    <ClInclude Include="libcef_dll\ctocpp\registration_ctocpp.h">
+      <Filter>libcef_dll\ctocpp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

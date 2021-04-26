@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=1493fbfb84ff6ae04fdf32299ea635f41845a9f3$
+// $hash=8ce97d9d7c49e82243e0c2dc0b31b54b234f49e5$
 //
 
 #include "libcef_dll/cpptoc/keyboard_handler_cpptoc.h"
@@ -123,7 +123,7 @@ CefRefPtr<CefKeyboardHandler> CefCppToCRefCounted<
     cef_keyboard_handler_t>::UnwrapDerived(CefWrapperType type,
                                            cef_keyboard_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

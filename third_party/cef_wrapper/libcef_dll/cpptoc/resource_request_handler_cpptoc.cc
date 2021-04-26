@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=70457d6e92ff60ee9955d451f5d3d78b70535510$
+// $hash=b21e07c41e050dd666e5e25a3b9041e67d1fd299$
 //
 
 #include "libcef_dll/cpptoc/resource_request_handler_cpptoc.h"
@@ -310,7 +310,7 @@ CefCppToCRefCounted<CefResourceRequestHandlerCppToC,
                     cef_resource_request_handler_t>::
     UnwrapDerived(CefWrapperType type, cef_resource_request_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

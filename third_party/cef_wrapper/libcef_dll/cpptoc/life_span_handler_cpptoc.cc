@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=c6b5f1dca6503df7cb9de7b5351969ad008df340$
+// $hash=3cbbd379676d77a0aadd503ba89a8fbef2f355a3$
 //
 
 #include "libcef_dll/cpptoc/life_span_handler_cpptoc.h"
@@ -121,7 +121,7 @@ int CEF_CALLBACK life_span_handler_on_before_popup(
         *client = CefClientCppToC::Wrap(clientPtr);
       }
     } else {
-      *client = NULL;
+      *client = nullptr;
     }
   }
   // Restore param: settings; type: struct_byref
@@ -134,7 +134,7 @@ int CEF_CALLBACK life_span_handler_on_before_popup(
         *extra_info = CefDictionaryValueCToCpp::Unwrap(extra_infoPtr);
       }
     } else {
-      *extra_info = NULL;
+      *extra_info = nullptr;
     }
   }
   // Restore param: no_javascript_access; type: bool_byaddr
@@ -232,7 +232,7 @@ CefRefPtr<CefLifeSpanHandler> CefCppToCRefCounted<
     cef_life_span_handler_t>::UnwrapDerived(CefWrapperType type,
                                             cef_life_span_handler_t* s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>
