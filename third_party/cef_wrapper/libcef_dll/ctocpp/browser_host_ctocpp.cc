@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=0516b8b72819ab4b5a9d6f4c68d774ebde06c94c$
+// $hash=9073823898d373a435ccdc56f2914aad91cbba1e$
 //
 
 #include "libcef_dll/ctocpp/browser_host_ctocpp.h"
@@ -85,7 +85,7 @@ CefRefPtr<CefBrowser> CefBrowserHostCToCpp::GetBrowser() {
 
   cef_browser_host_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_browser))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -195,7 +195,7 @@ CefRefPtr<CefClient> CefBrowserHostCToCpp::GetClient() {
 
   cef_browser_host_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_client))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -212,7 +212,7 @@ CefRefPtr<CefRequestContext> CefBrowserHostCToCpp::GetRequestContext() {
 
   cef_browser_host_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_request_context))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -975,7 +975,7 @@ CefBrowserHostCToCpp::GetVisibleNavigationEntry() {
 
   cef_browser_host_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_visible_navigation_entry))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -1024,7 +1024,7 @@ CefRefPtr<CefExtension> CefBrowserHostCToCpp::GetExtension() {
 
   cef_browser_host_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_extension))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -1095,7 +1095,7 @@ cef_browser_host_t*
 CefCToCppRefCounted<CefBrowserHostCToCpp, CefBrowserHost, cef_browser_host_t>::
     UnwrapDerived(CefWrapperType type, CefBrowserHost* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

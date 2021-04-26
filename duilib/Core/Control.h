@@ -34,11 +34,24 @@ public:
 	std::wstring GetBkColor() const;
 
 	/**
+	 * @brief 获取背景颜色1
+	 * @return 返回背景颜色的字符串，该值在 global.xml 中定义
+	 */
+	std::wstring GetBkColor1() const;
+	
+	/**
 	 * @brief 设置背景颜色
 	 * @param[in] strColor 要设置的背景颜色值，该值必须在 global.xml 中存在
 	 * @return 无
 	 */
 	void SetBkColor(const std::wstring& strColor);
+
+	/**
+	 * @brief 设置背景颜色1，渐变结束
+	 * @param[in] strColor 要设置的背景颜色值，该值必须在 global.xml 中存在
+	 * @return 无
+	 */
+	void SetBkColor1(const std::wstring& strColor);
 
 	/**
 	 * @brief 获取某个状态下的字体颜色
@@ -914,6 +927,7 @@ protected:
 	std::wstring m_sToolTipTextId;
 	std::wstring m_sUserData;
 	std::wstring m_strBkColor;
+	std::wstring m_strBkColor1;
 	StateColorMap m_colorMap;
 	Image m_bkImage;
 	StateImageMap m_imageMap;

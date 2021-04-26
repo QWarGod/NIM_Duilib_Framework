@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=16c737f9006a13e5a445d2402c04bc833d68961a$
+// $hash=f7c9de5f1d996c73233fe89a3a53bb9a8f92da11$
 //
 
 #include "libcef_dll/cpptoc/request_context_handler_cpptoc.h"
@@ -149,7 +149,7 @@ CefRefPtr<CefRequestContextHandler> CefCppToCRefCounted<
                                                   cef_request_context_handler_t*
                                                       s) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

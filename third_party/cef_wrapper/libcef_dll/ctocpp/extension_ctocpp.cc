@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=dc67aaad71333f61755a42afc5182b19b5aa99bf$
+// $hash=c276b1767d8f7930dd3be2c2409efda2159428b0$
 //
 
 #include "libcef_dll/ctocpp/extension_ctocpp.h"
@@ -62,7 +62,7 @@ CefRefPtr<CefDictionaryValue> CefExtensionCToCpp::GetManifest() {
 
   cef_extension_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_manifest))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -101,7 +101,7 @@ CefRefPtr<CefExtensionHandler> CefExtensionCToCpp::GetHandler() {
 
   cef_extension_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_handler))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -118,7 +118,7 @@ CefRefPtr<CefRequestContext> CefExtensionCToCpp::GetLoaderContext() {
 
   cef_extension_t* _struct = GetStruct();
   if (CEF_MEMBER_MISSING(_struct, get_loader_context))
-    return NULL;
+    return nullptr;
 
   // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
 
@@ -173,7 +173,7 @@ cef_extension_t*
 CefCToCppRefCounted<CefExtensionCToCpp, CefExtension, cef_extension_t>::
     UnwrapDerived(CefWrapperType type, CefExtension* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

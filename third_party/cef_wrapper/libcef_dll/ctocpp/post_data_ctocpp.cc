@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=f74305590ef987c51ea4f9ce9439edbc722a794a$
+// $hash=895c319a8cdcb9d38eeeb55e98cb9bdb44a51b90$
 //
 
 #include "libcef_dll/ctocpp/post_data_ctocpp.h"
@@ -176,7 +176,7 @@ cef_post_data_t*
 CefCToCppRefCounted<CefPostDataCToCpp, CefPostData, cef_post_data_t>::
     UnwrapDerived(CefWrapperType type, CefPostData* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

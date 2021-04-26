@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=87369bed5916a070a4f1a7f4bb9fcff5885cd31f$
+// $hash=ce618780672b92c6a5f4468b24bdf6c15abe7a82$
 //
 
 #include "libcef_dll/ctocpp/cookie_manager_ctocpp.h"
@@ -198,7 +198,7 @@ CefCToCppRefCounted<CefCookieManagerCToCpp,
                     cef_cookie_manager_t>::UnwrapDerived(CefWrapperType type,
                                                          CefCookieManager* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

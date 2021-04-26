@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=9fffd8804f2c03d9f2759ef8acceb1ef73739ed2$
+// $hash=f29ee71b497bc4f8ec55026e1e017d3d32dbc493$
 //
 
 #include "libcef_dll/cpptoc/views/view_delegate_cpptoc.h"
@@ -261,7 +261,7 @@ CefRefPtr<CefViewDelegate> CefCppToCRefCounted<
         reinterpret_cast<cef_window_delegate_t*>(s));
   }
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>

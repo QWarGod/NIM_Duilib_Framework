@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=d08dd55fbd32bdc2fe5e3623d9526af11fa7ada0$
+// $hash=026dabca1d46cfbe911d71ede9d5bb79cb7c553d$
 //
 
 #include "libcef_dll/ctocpp/resource_bundle_ctocpp.h"
@@ -99,7 +99,7 @@ cef_resource_bundle_t* CefCToCppRefCounted<
     cef_resource_bundle_t>::UnwrapDerived(CefWrapperType type,
                                           CefResourceBundle* c) {
   NOTREACHED() << "Unexpected class type: " << type;
-  return NULL;
+  return nullptr;
 }
 
 template <>
