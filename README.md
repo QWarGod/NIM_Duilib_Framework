@@ -5,6 +5,7 @@ NIM Duilib 包含了一整套桌面软件的开发部件，与其说这是一个
 修改说明：
 > 本分支对cef进行了升级，目前是libcef [chromium80,3987版本](http://opensource.spotify.com/cefbuilds/index.html)
 > 并且添加了mp4的支持，可以在www.html5test.com验证，使用别人编译的库：https://download.csdn.net/download/ldmlrx/12285397
+> 修复了RichEdit同时设置Width和Height为Auto时无法计算高度的问题（此时必须设置MaxWidth）
 
 ![GitHub](https://img.shields.io/badge/license-MIT-green.svg)
 [![Build status](https://ci.appveyor.com/api/projects/status/u29yl0j7pasopm3h?svg=true)](https://ci.appveyor.com/project/nmgwddj/nim-duilib-framework)
