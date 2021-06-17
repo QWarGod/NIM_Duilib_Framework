@@ -27,7 +27,8 @@ namespace nim_comp {
         public CefLoadHandler,
         public CefRequestHandler,
         public CefDownloadHandler,
-        public CefDialogHandler {
+        public CefDialogHandler,
+		public CefResourceRequestHandler{
       public:
         BrowserHandler();
 
@@ -193,6 +194,16 @@ namespace nim_comp {
         virtual CefRefPtr<CefRequestHandler> GetRequestHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefDownloadHandler> GetDownloadHandler() OVERRIDE { return this; }
         virtual CefRefPtr<CefDialogHandler> GetDialogHandler() OVERRIDE { return this; }
+		virtual CefRefPtr<CefResourceRequestHandler> GetResourceRequestHandler(
+			CefRefPtr<CefBrowser> browser,
+			CefRefPtr<CefFrame> frame,
+			CefRefPtr<CefRequest> request,
+			bool is_navigation,
+			bool is_download,
+			const CefString& request_initiator,
+			bool& disable_default_handling) {
+			return this;
+		}
         virtual bool OnProcessMessageReceived(CefRefPtr<CefBrowser> browser,
                                               CefRefPtr<CefFrame> frame,
                                               CefProcessId source_process,
@@ -231,7 +242,7 @@ namespace nim_comp {
 
         virtual void OnPaint(CefRefPtr<CefBrowser> browser, PaintElementType type, const RectList& dirtyRects, const void* buffer, int width, int height) OVERRIDE;
 
-        virtual void OnCursorChange(CefRefPtr<CefBrowser> browser, CefCursorHandle cursor, CursorType type, const CefCursorInfo& custom_cursor_info) OVERRIDE;
+        //testtag virtual void OnCursorChange(CefRefPtr<CefBrowser> browser, CefCursorHandle cursor, CursorType type, const CefCursorInfo& custom_cursor_info) OVERRIDE;
 
         // CefContextMenuHandler methods
         virtual void OnBeforeContextMenu(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, CefRefPtr<CefContextMenuParams> params, CefRefPtr<CefMenuModel> model) OVERRIDE;

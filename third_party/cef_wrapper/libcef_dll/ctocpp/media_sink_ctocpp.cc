@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,10 +9,11 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=bb39ec5e546482b707c1e01a83fc1b064d96a4e6$
+// $hash=50a71dcdcaa9669a6ac927e5e555266fcadb6be3$
 //
 
 #include "libcef_dll/ctocpp/media_sink_ctocpp.h"
+#include "libcef_dll/cpptoc/media_sink_device_info_callback_cpptoc.h"
 #include "libcef_dll/ctocpp/media_source_ctocpp.h"
 #include "libcef_dll/shutdown_checker.h"
 
@@ -34,22 +35,6 @@ NO_SANITIZE("cfi-icall") CefString CefMediaSinkCToCpp::GetId() {
   CefString _retvalStr;
   _retvalStr.AttachToUserFree(_retval);
   return _retvalStr;
-}
-
-NO_SANITIZE("cfi-icall") bool CefMediaSinkCToCpp::IsValid() {
-  shutdown_checker::AssertNotShutdown();
-
-  cef_media_sink_t* _struct = GetStruct();
-  if (CEF_MEMBER_MISSING(_struct, is_valid))
-    return false;
-
-  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
-
-  // Execute
-  int _retval = _struct->is_valid(_struct);
-
-  // Return type: bool
-  return _retval ? true : false;
 }
 
 NO_SANITIZE("cfi-icall") CefString CefMediaSinkCToCpp::GetName() {
@@ -86,6 +71,44 @@ NO_SANITIZE("cfi-icall") CefString CefMediaSinkCToCpp::GetDescription() {
   CefString _retvalStr;
   _retvalStr.AttachToUserFree(_retval);
   return _retvalStr;
+}
+
+NO_SANITIZE("cfi-icall")
+CefMediaSink::IconType CefMediaSinkCToCpp::GetIconType() {
+  shutdown_checker::AssertNotShutdown();
+
+  cef_media_sink_t* _struct = GetStruct();
+  if (CEF_MEMBER_MISSING(_struct, get_icon_type))
+    return CEF_MSIT_GENERIC;
+
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Execute
+  cef_media_sink_icon_type_t _retval = _struct->get_icon_type(_struct);
+
+  // Return type: simple
+  return _retval;
+}
+
+NO_SANITIZE("cfi-icall")
+void CefMediaSinkCToCpp::GetDeviceInfo(
+    CefRefPtr<CefMediaSinkDeviceInfoCallback> callback) {
+  shutdown_checker::AssertNotShutdown();
+
+  cef_media_sink_t* _struct = GetStruct();
+  if (CEF_MEMBER_MISSING(_struct, get_device_info))
+    return;
+
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  // Verify param: callback; type: refptr_diff
+  DCHECK(callback.get());
+  if (!callback.get())
+    return;
+
+  // Execute
+  _struct->get_device_info(
+      _struct, CefMediaSinkDeviceInfoCallbackCppToC::Wrap(callback));
 }
 
 NO_SANITIZE("cfi-icall") bool CefMediaSinkCToCpp::IsCastSink() {

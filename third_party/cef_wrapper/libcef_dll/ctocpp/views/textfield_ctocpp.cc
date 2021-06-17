@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=0f677bbeb351b9d71e00c622971d4593c99b99d5$
+// $hash=132a40648e492f00f21d6762ff63d4491e8060c3$
 //
 
 #include "libcef_dll/ctocpp/views/textfield_ctocpp.h"
@@ -427,7 +427,8 @@ void CefTextfieldCToCpp::ApplyTextStyle(cef_text_style_t style,
 }
 
 NO_SANITIZE("cfi-icall")
-bool CefTextfieldCToCpp::IsCommandEnabled(int command_id) {
+bool CefTextfieldCToCpp::IsCommandEnabled(
+    cef_text_field_commands_t command_id) {
   shutdown_checker::AssertNotShutdown();
 
   cef_textfield_t* _struct = GetStruct();
@@ -444,7 +445,7 @@ bool CefTextfieldCToCpp::IsCommandEnabled(int command_id) {
 }
 
 NO_SANITIZE("cfi-icall")
-void CefTextfieldCToCpp::ExecuteCommand(int command_id) {
+void CefTextfieldCToCpp::ExecuteCommand(cef_text_field_commands_t command_id) {
   shutdown_checker::AssertNotShutdown();
 
   cef_textfield_t* _struct = GetStruct();

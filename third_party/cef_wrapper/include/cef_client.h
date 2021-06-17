@@ -38,6 +38,7 @@
 #define CEF_INCLUDE_CEF_CLIENT_H_
 #pragma once
 
+#include "include/cef_audio_handler.h"
 #include "include/cef_base.h"
 #include "include/cef_context_menu_handler.h"
 #include "include/cef_dialog_handler.h"
@@ -50,6 +51,7 @@
 #include "include/cef_keyboard_handler.h"
 #include "include/cef_life_span_handler.h"
 #include "include/cef_load_handler.h"
+#include "include/cef_print_handler.h"
 #include "include/cef_process_message.h"
 #include "include/cef_render_handler.h"
 #include "include/cef_request_handler.h"
@@ -60,6 +62,12 @@
 /*--cef(source=client,no_debugct_check)--*/
 class CefClient : public virtual CefBaseRefCounted {
  public:
+  ///
+  // Return the handler for audio rendering events.
+  ///
+  /*--cef()--*/
+  virtual CefRefPtr<CefAudioHandler> GetAudioHandler() { return nullptr; }
+
   ///
   // Return the handler for context menus. If no handler is provided the default
   // implementation will be used.
@@ -131,6 +139,13 @@ class CefClient : public virtual CefBaseRefCounted {
   ///
   /*--cef()--*/
   virtual CefRefPtr<CefLoadHandler> GetLoadHandler() { return nullptr; }
+
+  ///
+  // Return the handler for printing on Linux. If a print handler is not
+  // provided then printing will not be supported on the Linux platform.
+  ///
+  /*--cef()--*/
+  virtual CefRefPtr<CefPrintHandler> GetPrintHandler() { return nullptr; }
 
   ///
   // Return the handler for off-screen rendering events.

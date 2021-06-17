@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=2e22f210ff06337ac41e71a00b9dc6edce08e6d8$
+// $hash=f6410f1d692fb2ccbd0cae2e388db6ee8b22cc1e$
 //
 
 #include "libcef_dll/cpptoc/render_handler_cpptoc.h"
@@ -324,38 +324,6 @@ render_handler_on_accelerated_paint(struct _cef_render_handler_t* self,
       CefBrowserCToCpp::Wrap(browser), type, dirtyRectsList, shared_handle);
 }
 
-void CEF_CALLBACK render_handler_on_cursor_change(
-    struct _cef_render_handler_t* self,
-    cef_browser_t* browser,
-    cef_cursor_handle_t cursor,
-    cef_cursor_type_t type,
-    const struct _cef_cursor_info_t* custom_cursor_info) {
-  shutdown_checker::AssertNotShutdown();
-
-  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
-
-  DCHECK(self);
-  if (!self)
-    return;
-  // Verify param: browser; type: refptr_diff
-  DCHECK(browser);
-  if (!browser)
-    return;
-  // Verify param: custom_cursor_info; type: struct_byref_const
-  DCHECK(custom_cursor_info);
-  if (!custom_cursor_info)
-    return;
-
-  // Translate param: custom_cursor_info; type: struct_byref_const
-  CefCursorInfo custom_cursor_infoObj;
-  if (custom_cursor_info)
-    custom_cursor_infoObj.Set(*custom_cursor_info, false);
-
-  // Execute
-  CefRenderHandlerCppToC::Get(self)->OnCursorChange(
-      CefBrowserCToCpp::Wrap(browser), cursor, type, custom_cursor_infoObj);
-}
-
 int CEF_CALLBACK
 render_handler_start_dragging(struct _cef_render_handler_t* self,
                               cef_browser_t* browser,
@@ -536,7 +504,6 @@ CefRenderHandlerCppToC::CefRenderHandlerCppToC() {
   GetStruct()->on_popup_size = render_handler_on_popup_size;
   GetStruct()->on_paint = render_handler_on_paint;
   GetStruct()->on_accelerated_paint = render_handler_on_accelerated_paint;
-  GetStruct()->on_cursor_change = render_handler_on_cursor_change;
   GetStruct()->start_dragging = render_handler_start_dragging;
   GetStruct()->update_drag_cursor = render_handler_update_drag_cursor;
   GetStruct()->on_scroll_offset_changed =

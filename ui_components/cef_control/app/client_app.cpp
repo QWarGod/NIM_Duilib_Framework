@@ -27,6 +27,11 @@ namespace nim_comp {
             command_line->AppendSwitch("process-per-site");
             command_line->AppendSwitch("disable-gpu");
             command_line->AppendSwitch("disable-gpu-compositing");
+
+			// 2021-06-16 - qsc øÁ”ÚŒ Ã‚
+			if (!CefManager::GetInstance()->IsWebSecurity()) {
+				command_line->AppendSwitch("disable-web-security");
+			}
             //command_line->AppendSwitchWithValue("proxy-server", "SOCKS5://127.0.0.1:1080");
 
             // ø™∆Ù¿Î∆¡‰÷»æ

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=68840d18a25efe4d749e480225d7ac3caacd4723$
+// $hash=baa4e92404f1c0b975c3724e649afb4ef04250f0$
 //
 
 #include "libcef_dll/cpptoc/request_handler_cpptoc.h"
@@ -396,6 +396,26 @@ void CEF_CALLBACK request_handler_on_render_process_terminated(
       CefBrowserCToCpp::Wrap(browser), status);
 }
 
+void CEF_CALLBACK request_handler_on_document_available_in_main_frame(
+    struct _cef_request_handler_t* self,
+    cef_browser_t* browser) {
+  shutdown_checker::AssertNotShutdown();
+
+  // AUTO-GENERATED CONTENT - DELETE THIS COMMENT BEFORE MODIFYING
+
+  DCHECK(self);
+  if (!self)
+    return;
+  // Verify param: browser; type: refptr_diff
+  DCHECK(browser);
+  if (!browser)
+    return;
+
+  // Execute
+  CefRequestHandlerCppToC::Get(self)->OnDocumentAvailableInMainFrame(
+      CefBrowserCToCpp::Wrap(browser));
+}
+
 }  // namespace
 
 // CONSTRUCTOR - Do not edit by hand.
@@ -414,6 +434,8 @@ CefRequestHandlerCppToC::CefRequestHandlerCppToC() {
   GetStruct()->on_render_view_ready = request_handler_on_render_view_ready;
   GetStruct()->on_render_process_terminated =
       request_handler_on_render_process_terminated;
+  GetStruct()->on_document_available_in_main_frame =
+      request_handler_on_document_available_in_main_frame;
 }
 
 // DESTRUCTOR - Do not edit by hand.

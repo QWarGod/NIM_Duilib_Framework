@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=8c3c6f34acb740232874335312c7a28699f32806$
+// $hash=f57b9f72a806aecacaa984faf584fdf7c1c99301$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_VIEWS_TEXTFIELD_CTOCPP_H_
@@ -60,8 +60,8 @@ class CefTextfieldCToCpp : public CefCToCppRefCounted<CefTextfieldCToCpp,
   void ApplyTextStyle(cef_text_style_t style,
                       bool add,
                       const CefRange& range) OVERRIDE;
-  bool IsCommandEnabled(int command_id) OVERRIDE;
-  void ExecuteCommand(int command_id) OVERRIDE;
+  bool IsCommandEnabled(cef_text_field_commands_t command_id) OVERRIDE;
+  void ExecuteCommand(cef_text_field_commands_t command_id) OVERRIDE;
   void ClearEditHistory() OVERRIDE;
   void SetPlaceholderText(const CefString& text) OVERRIDE;
   CefString GetPlaceholderText() OVERRIDE;

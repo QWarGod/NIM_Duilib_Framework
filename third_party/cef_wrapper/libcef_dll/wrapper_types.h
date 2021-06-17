@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=089392d929a9f7a3ca4fe7f53d63b98536505261$
+// $hash=8e09f43f2c7faf35a14e7367b2156f4d4e89b74d$
 //
 
 #ifndef CEF_LIBCEF_DLL_WRAPPER_TYPES_H_
@@ -21,6 +21,7 @@ enum CefWrapperType {
   WT_BASE_SCOPED,
   WT_ACCESSIBILITY_HANDLER,
   WT_APP,
+  WT_AUDIO_HANDLER,
   WT_AUTH_CALLBACK,
   WT_BEFORE_DOWNLOAD_CALLBACK,
   WT_BINARY_VALUE,
@@ -45,6 +46,7 @@ enum CefWrapperType {
   WT_DOMNODE,
   WT_DOMVISITOR,
   WT_DELETE_COOKIES_CALLBACK,
+  WT_DEV_TOOLS_MESSAGE_OBSERVER,
   WT_DIALOG_HANDLER,
   WT_DICTIONARY_VALUE,
   WT_DISPLAY,
@@ -78,6 +80,7 @@ enum CefWrapperType {
   WT_MEDIA_ROUTE_CREATE_CALLBACK,
   WT_MEDIA_ROUTER,
   WT_MEDIA_SINK,
+  WT_MEDIA_SINK_DEVICE_INFO_CALLBACK,
   WT_MEDIA_SOURCE,
   WT_MENU_BUTTON,
   WT_MENU_BUTTON_DELEGATE,

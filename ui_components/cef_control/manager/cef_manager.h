@@ -82,6 +82,19 @@ namespace nim_comp {
         //初始化cookie
         void InitCookies(const CookieArr& cookies, const std::wstring& domain);
 
+		/**
+		* 是否开启安全模式 默认开启
+		* 关闭能解决跨域访问问题
+		* @return bool true 开启，false 不开启
+		*/
+		bool IsWebSecurity() const;
+
+		/**
+		* 设置安全模式 默认开启
+		* 关闭能解决跨域访问问题
+		*  @param bool true 开启，false 不开启
+		*/
+		void SetEnableWebSecurity(bool bEnable);
       private:
         /**
         * 设置cef配置信息
@@ -97,5 +110,6 @@ namespace nim_comp {
         CefMessageLoopDispatcher message_dispatcher_;
         int browser_count_;
         bool is_enable_offset_render_;
+		bool is_enable_web_security_;
     };
 }

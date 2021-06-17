@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=73aeb0f58611c0d7a9fa13f1d9268912e0fba0bd$
+// $hash=0f4a7c8d49d309dfcd2bbb739d0497c9e805678b$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_MEDIA_SOURCE_CTOCPP_H_
@@ -35,7 +35,6 @@ class CefMediaSourceCToCpp : public CefCToCppRefCounted<CefMediaSourceCToCpp,
 
   // CefMediaSource methods.
   CefString GetId() OVERRIDE;
-  bool IsValid() OVERRIDE;
   bool IsCastSource() OVERRIDE;
   bool IsDialSource() OVERRIDE;
 };

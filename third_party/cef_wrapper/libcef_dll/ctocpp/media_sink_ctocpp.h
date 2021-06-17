@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Chromium Embedded Framework Authors. All rights
+// Copyright (c) 2021 The Chromium Embedded Framework Authors. All rights
 // reserved. Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
 //
@@ -9,7 +9,7 @@
 // implementations. See the translator.README.txt file in the tools directory
 // for more information.
 //
-// $hash=d69c0bdadc802bc7cb970c316f3a0ed8529c5f9c$
+// $hash=cd0189f46038a0f941bfd592127ce29866257b40$
 //
 
 #ifndef CEF_LIBCEF_DLL_CTOCPP_MEDIA_SINK_CTOCPP_H_
@@ -35,9 +35,11 @@ class CefMediaSinkCToCpp : public CefCToCppRefCounted<CefMediaSinkCToCpp,
 
   // CefMediaSink methods.
   CefString GetId() OVERRIDE;
-  bool IsValid() OVERRIDE;
   CefString GetName() OVERRIDE;
   CefString GetDescription() OVERRIDE;
+  IconType GetIconType() OVERRIDE;
+  void GetDeviceInfo(
+      CefRefPtr<CefMediaSinkDeviceInfoCallback> callback) OVERRIDE;
   bool IsCastSink() OVERRIDE;
   bool IsDialSink() OVERRIDE;
   bool IsCompatibleWith(CefRefPtr<CefMediaSource> source) OVERRIDE;

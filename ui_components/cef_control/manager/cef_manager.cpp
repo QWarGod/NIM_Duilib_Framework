@@ -52,6 +52,7 @@ namespace nim_comp {
     CefManager::CefManager() {
         browser_count_ = 0;
         is_enable_offset_render_ = true;
+		is_enable_web_security_ = true;
     }
 
     void CefManager::AddCefDllToPath() {
@@ -242,5 +243,16 @@ namespace nim_comp {
 
         return;
     }
+
+	bool CefManager::IsWebSecurity() const
+	{
+		return is_enable_web_security_;
+	}
+
+	void CefManager::SetEnableWebSecurity(bool bEnable)
+	{
+		is_enable_web_security_ = bEnable;
+	}
+
 }
 
