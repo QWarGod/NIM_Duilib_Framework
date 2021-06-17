@@ -57,7 +57,7 @@ void CefForm::InitWindow() {
     // 加载皮肤目录下的 html 文件
     //cef_control_->LoadURL(nbase::win32::GetCurrentModuleDirectory() + L"resources\\themes\\default\\cef\\cef.html");
 
-    cef_control_->LoadURL("https://erp.pangmaoyun.com/helpCenter/detail/391");
+    cef_control_->LoadURL("https://www.baidu.com");
 
     if (!nim_comp::CefManager::GetInstance()->IsEnableOffsetRender())
         cef_control_dev_->SetVisible(false);

@@ -15,8 +15,8 @@
 namespace nim_comp {
 //////////////////////////////////////////////////////////////////////////////////////////
 // CefRenderProcessHandler methods.
-    void ClientApp::OnRenderThreadCreated(CefRefPtr<CefListValue> extra_info) {
-    }
+	//test tage void ClientApp::OnRenderThreadCreated(CefRefPtr<CefListValue> extra_info) {
+    //}
 
     void ClientApp::OnWebKitInitialized() {
         /**

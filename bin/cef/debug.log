@@ -1,0 +1,33 @@
+[0615/182749.301:INFO:CONSOLE(221)] "每一个星球都有一个驱动核心，
+每一种思想都有影响力的种子。
+感受世界的温度，
+年轻的你也能成为改变世界的动力，
+百度珍惜你所有的潜力。
+你的潜力，是改变世界的动力！
+
+", source: https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/global/js/all_async_search_02d290e.js (221)
+[0615/182749.302:INFO:CONSOLE(221)] "%c百度2021校园招聘简历投递：https://talent.baidu.com/external/baidu/campus.html color:red", source: https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/global/js/all_async_search_02d290e.js (221)
+[0615/182758.850:INFO:CONSOLE(221)] "每一个星球都有一个驱动核心，
+每一种思想都有影响力的种子。
+感受世界的温度，
+年轻的你也能成为改变世界的动力，
+百度珍惜你所有的潜力。
+你的潜力，是改变世界的动力！
+
+", source: https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/global/js/all_async_search_02d290e.js (221)
+[0615/182758.855:INFO:CONSOLE(221)] "%c百度2021校园招聘简历投递：https://talent.baidu.com/external/baidu/campus.html color:red", source: https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/global/js/all_async_search_02d290e.js (221)
+[0616/120248.058:INFO:CONSOLE(0)] "Mixed Content: The page at 'https://wh.qc-up.com/cashier/login' was loaded over HTTPS, but requested an insecure element 'http://assets.topfreeweb.net/assets/media//bg/bg-3.jpg'. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html", source: https://wh.qc-up.com/cashier/login (0)
+[0616/120248.140:ERROR:ssl_client_socket_impl.cc(947)] handshake failed; returned -1, SSL error code 1, net_error -113
+[0616/120248.996:INFO:CONSOLE(0)] "Access to font at 'https://fonts.gstatic.com/s/poppins/v8/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2' from origin 'https://wh.qc-up.com' has been blocked by CORS policy: Request header field placeid is not allowed by Access-Control-Allow-Headers in preflight response.", source: https://wh.qc-up.com/cashier/login (0)
+[0616/120248.999:INFO:CONSOLE(0)] "Access to font at 'https://fonts.gstatic.com/s/poppins/v8/pxiByp8kv8JHgFVrLDz8Z1xlFd2JQEk.woff2' from origin 'https://wh.qc-up.com' has been blocked by CORS policy: Request header field placeid is not allowed by Access-Control-Allow-Headers in preflight response.", source: https://wh.qc-up.com/cashier/login (0)
+[0616/120249.046:INFO:CONSOLE(0)] "Access to font at 'https://fonts.gstatic.com/s/poppins/v8/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2' from origin 'https://wh.qc-up.com' has been blocked by CORS policy: Request header field placeid is not allowed by Access-Control-Allow-Headers in preflight response.", source: https://wh.qc-up.com/cashier/login (0)
+[0616/120249.172:ERROR:ssl_client_socket_impl.cc(947)] handshake failed; returned -1, SSL error code 1, net_error -113
+[0616/120253.085:INFO:CONSOLE(126)] "C++ method loading ......error", source: https://wh.qc-up.com/assets/js/pages/cashier/login.js (126)
+[0616/120446.936:ERROR:gpu_init.cc(426)] Passthrough is not supported, GL is disabled
+[0616/133124.186:INFO:CONSOLE(0)] "Mixed Content: The page at 'https://wh.qc-up.com/cashier/login' was loaded over HTTPS, but requested an insecure element 'http://assets.topfreeweb.net/assets/media//bg/bg-3.jpg'. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html", source: https://wh.qc-up.com/cashier/login (0)
+[0616/133124.280:ERROR:ssl_client_socket_impl.cc(947)] handshake failed; returned -1, SSL error code 1, net_error -113
+[0616/133124.999:ERROR:ssl_client_socket_impl.cc(947)] handshake failed; returned -1, SSL error code 1, net_error -113
+[0616/133125.696:INFO:CONSOLE(0)] "Access to font at 'https://fonts.gstatic.com/s/poppins/v8/pxiByp8kv8JHgFVrLDz8Z1xlFd2JQEk.woff2' from origin 'https://wh.qc-up.com' has been blocked by CORS policy: Request header field placeid is not allowed by Access-Control-Allow-Headers in preflight response.", source: https://wh.qc-up.com/cashier/login (0)
+[0616/133125.699:INFO:CONSOLE(0)] "Access to font at 'https://fonts.gstatic.com/s/poppins/v8/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2' from origin 'https://wh.qc-up.com' has been blocked by CORS policy: Request header field placeid is not allowed by Access-Control-Allow-Headers in preflight response.", source: https://wh.qc-up.com/cashier/login (0)
+[0616/133125.735:INFO:CONSOLE(0)] "Access to font at 'https://fonts.gstatic.com/s/poppins/v8/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2' from origin 'https://wh.qc-up.com' has been blocked by CORS policy: Request header field placeid is not allowed by Access-Control-Allow-Headers in preflight response.", source: https://wh.qc-up.com/cashier/login (0)
+[0616/133129.499:INFO:CONSOLE(126)] "C++ method loading ......error", source: https://wh.qc-up.com/assets/js/pages/cashier/login.js (126)

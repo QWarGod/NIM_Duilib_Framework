@@ -32,10 +32,10 @@ namespace nim_comp {
         virtual void OnContextInitialized() OVERRIDE;
         virtual void OnBeforeChildProcessLaunch(
             CefRefPtr<CefCommandLine> command_line) OVERRIDE;
-        virtual void OnRenderProcessThreadCreated(CefRefPtr<CefListValue> extra_info) OVERRIDE;
+        //test tage virtual void OnRenderProcessThreadCreated(CefRefPtr<CefListValue> extra_info) OVERRIDE;
 
         // CefRenderProcessHandler methods.
-        virtual void OnRenderThreadCreated(CefRefPtr<CefListValue> extra_info) OVERRIDE;
+		//test tage  virtual void OnRenderThreadCreated(CefRefPtr<CefListValue> extra_info) OVERRIDE;
         virtual void OnWebKitInitialized() OVERRIDE;
         virtual void OnBrowserCreated(CefRefPtr<CefBrowser> browser, CefRefPtr<CefDictionaryValue> extra_info) OVERRIDE;
         virtual void OnBrowserDestroyed(CefRefPtr<CefBrowser> browser) OVERRIDE;
